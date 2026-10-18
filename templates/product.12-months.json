@@ -20,10 +20,6 @@
             "text_style": "uppercase"
           }
         },
-        "judge_me_reviews_preview_badge_XkiYaF": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        },
         "rating": {
           "type": "rating",
           "disabled": true,
@@ -109,16 +105,6 @@
             "highlight_3": "Safe, mess-free and easy to use"
           }
         },
-        "reelfy_videos_reelfy_product_MHjPzw": {
-          "type": "shopify://apps/reelfy-videos/blocks/reelfy-product/4022ffb0-05c3-4ef3-a409-6df51f4b1b3f",
-          "settings": {
-            "title": "",
-            "heading_size": "1",
-            "heading_align": "left",
-            "heading_color": "",
-            "custom_class": ""
-          }
-        },
         "custom_liquid_KywwLz": {
           "type": "custom_liquid",
           "settings": {
@@ -140,7 +126,6 @@
       },
       "block_order": [
         "vendor",
-        "judge_me_reviews_preview_badge_XkiYaF",
         "rating",
         "title",
         "custom_liquid_Vmc6jw",
@@ -153,7 +138,6 @@
         "description",
         "collapsible_tab_EMTrxi",
         "highlights",
-        "reelfy_videos_reelfy_product_MHjPzw",
         "custom_liquid_KywwLz",
         "custom_liquid_CFynxR",
         "share"
@@ -513,20 +497,6 @@
     },
     "17891555281493f970": {
       "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_WjGKDm": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_WjGKDm"
-      ],
       "settings": {
         "include_margins": true
       }
