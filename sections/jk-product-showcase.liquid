@@ -1,0 +1,224 @@
+{%- style -%}
+  #ProductShowcase-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round }}px;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase {
+    overflow: hidden;
+    border-radius: {{ section.settings.corner_radius }}rem;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__panels {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns_desktop }}, minmax(0, 1fr));
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__panel {
+    position: relative;
+    min-height: {{ section.settings.panel_height }}rem;
+    background: rgba(var(--color-foreground), .08);
+    overflow: hidden;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__panel + .jk-showcase__panel {
+    border-left: .1rem solid rgba(255, 255, 255, .18);
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__image,
+  #ProductShowcase-{{ section.id }} .jk-showcase__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__image {
+    object-fit: cover;
+    transition: transform .55s ease;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__panel:hover .jk-showcase__image { transform: scale(1.035); }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__placeholder { color: rgba(var(--color-foreground), .2); }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__panel:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(20, 12, 10, .72) 100%);
+    pointer-events: none;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__content {
+    position: absolute;
+    z-index: 1;
+    right: clamp(1.8rem, 2.5vw, 3.5rem);
+    bottom: clamp(1.8rem, 2.5vw, 3.3rem);
+    left: clamp(1.8rem, 2.5vw, 3.5rem);
+    color: #fff;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__label {
+    margin: 0 0 .8rem;
+    color: rgba(255, 255, 255, .9);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(2.8rem, 3vw, 4rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -.03em;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__text {
+    margin: .6rem 0 0;
+    color: rgba(255, 255, 255, .9);
+    font-size: 1.35rem;
+    line-height: 1.4;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__stats {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.stats_columns }}, minmax(0, 1fr));
+    background: {{ section.settings.stats_background }};
+    color: {{ section.settings.stats_text_color }};
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__stat {
+    min-width: 0;
+    padding: 2.7rem 1.5rem;
+    text-align: center;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__stat + .jk-showcase__stat { border-left: .1rem solid rgba(255, 255, 255, .12); }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__stat-value {
+    margin: 0;
+    font-family: var(--font-heading-family);
+    font-size: clamp(3.2rem, 3.5vw, 4.8rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -.04em;
+  }
+
+  #ProductShowcase-{{ section.id }} .jk-showcase__stat-label {
+    margin: .8rem 0 0;
+    color: color-mix(in srgb, {{ section.settings.stats_text_color }} 78%, transparent);
+    font-size: 1.2rem;
+    line-height: 1.35;
+  }
+
+  @media screen and (min-width: 750px) {
+    #ProductShowcase-{{ section.id }} { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; }
+  }
+
+  @media screen and (max-width: 749px) {
+    #ProductShowcase-{{ section.id }} .jk-showcase { border-radius: 1.2rem; }
+    #ProductShowcase-{{ section.id }} .jk-showcase__panels { grid-template-columns: 1fr; }
+    #ProductShowcase-{{ section.id }} .jk-showcase__panel { min-height: 38rem; }
+    #ProductShowcase-{{ section.id }} .jk-showcase__panel + .jk-showcase__panel { border-top: .1rem solid rgba(255,255,255,.18); border-left: 0; }
+    #ProductShowcase-{{ section.id }} .jk-showcase__title { font-size: 3rem; }
+    #ProductShowcase-{{ section.id }} .jk-showcase__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #ProductShowcase-{{ section.id }} .jk-showcase__stat { padding: 2.2rem 1rem; }
+    #ProductShowcase-{{ section.id }} .jk-showcase__stat:nth-child(odd) { border-left: 0; }
+    #ProductShowcase-{{ section.id }} .jk-showcase__stat:nth-child(n + 3) { border-top: .1rem solid rgba(255,255,255,.12); }
+  }
+{%- endstyle -%}
+
+<section id="ProductShowcase-{{ section.id }}" class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="{% if section.settings.full_width %}full-width{% else %}page-width{% endif %}">
+    <div class="jk-showcase">
+      <div class="jk-showcase__panels">
+        {% assign panel_index = 0 %}
+        {% for block in section.blocks %}
+          {% if block.type == 'panel' %}
+            {% assign panel_index = panel_index | plus: 1 %}
+            {% assign panel_image = block.settings.image %}
+            {% if panel_image == blank %}
+              {% if panel_index == 1 %}
+                {% assign panel_image = product.images[0] | default: product.featured_image %}
+              {% else %}
+                {% assign panel_image = product.images[1] | default: product.featured_image %}
+              {% endif %}
+            {% endif %}
+            <article class="jk-showcase__panel" {{ block.shopify_attributes }}>
+              {% if panel_image != blank %}
+                {{ panel_image | image_url: width: 1600 | image_tag: class: 'jk-showcase__image', widths: '550, 750, 1100, 1600', sizes: '(min-width: 750px) 50vw, 100vw', loading: 'lazy', alt: block.settings.title }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'jk-showcase__placeholder' }}
+              {% endif %}
+              <div class="jk-showcase__content">
+                {% if block.settings.label != blank %}<p class="jk-showcase__label">{{ block.settings.label | escape }}</p>{% endif %}
+                {% if block.settings.title != blank %}<h2 class="jk-showcase__title">{{ block.settings.title | escape }}</h2>{% endif %}
+                {% if block.settings.text != blank %}<p class="jk-showcase__text">{{ block.settings.text | escape }}</p>{% endif %}
+              </div>
+            </article>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% assign stat_count = 0 %}
+      {% for block in section.blocks %}{% if block.type == 'stat' %}{% assign stat_count = stat_count | plus: 1 %}{% endif %}{% endfor %}
+      {% if stat_count > 0 %}
+        <div class="jk-showcase__stats">
+          {% for block in section.blocks %}
+            {% if block.type == 'stat' %}
+              <div class="jk-showcase__stat" {{ block.shopify_attributes }}>
+                <p class="jk-showcase__stat-value">{{ block.settings.value | escape }}</p>
+                <p class="jk-showcase__stat-label">{{ block.settings.label | escape }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JK Product showcase",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 6,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "checkbox", "id": "full_width", "label": "Full width", "default": true },
+    { "type": "range", "id": "panel_height", "min": 35, "max": 75, "step": 5, "unit": "rem", "label": "Desktop image height", "default": 60 },
+    { "type": "range", "id": "corner_radius", "min": 0, "max": 3, "step": 1, "unit": "rem", "label": "Corner radius", "default": 0 },
+    { "type": "select", "id": "columns_desktop", "label": "Desktop image columns", "default": "2", "options": [{ "value": "1", "label": "One" }, { "value": "2", "label": "Two" }] },
+    { "type": "select", "id": "stats_columns", "label": "Desktop stat columns", "default": "4", "options": [{ "value": "2", "label": "Two" }, { "value": "3", "label": "Three" }, { "value": "4", "label": "Four" }] },
+    { "type": "color", "id": "stats_background", "label": "Stats background", "default": "#2E2425" },
+    { "type": "color", "id": "stats_text_color", "label": "Stats text color", "default": "#F9E7E9" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 48 }
+  ],
+  "blocks": [
+    { "type": "panel", "name": "Image panel", "limit": 2, "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "label", "label": "Small label", "default": "Starter favourite" },
+      { "type": "text", "id": "title", "label": "Title", "default": "The Classic Print" },
+      { "type": "text", "id": "text", "label": "Text", "default": "Pack 1 and Pack 2" }
+    ] },
+    { "type": "stat", "name": "Statistic", "limit": 4, "settings": [
+      { "type": "text", "id": "value", "label": "Value", "default": "12K+" },
+      { "type": "text", "id": "label", "label": "Label", "default": "Happy customers" }
+    ] }
+  ],
+  "presets": [{ "name": "JK Product showcase", "blocks": [
+    { "type": "panel", "settings": { "label": "Starter favourite", "title": "The Classic Print", "text": "Pack 1 and Pack 2" } },
+    { "type": "panel", "settings": { "label": "Deluxe kit", "title": "The Deluxe Print", "text": "Pack 3 only" } },
+    { "type": "stat", "settings": { "value": "12K+", "label": "Happy customers" } },
+    { "type": "stat", "settings": { "value": "4.7", "label": "Average rating out of 5" } },
+    { "type": "stat", "settings": { "value": "100%", "label": "Non-toxic clay" } },
+    { "type": "stat", "settings": { "value": "1200+", "label": "Kits shipped this month" } }
+  ] }]
+}
+{% endschema %}

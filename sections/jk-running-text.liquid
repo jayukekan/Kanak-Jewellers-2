@@ -1,0 +1,212 @@
+{%- style -%}
+  #RunningText-{{ section.id }} {
+    --marquee-speed: {{ section.settings.speed }}s;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.background_color }};
+    color: {{ section.settings.text_color }};
+    overflow: hidden;
+  }
+
+  #RunningText-{{ section.id }} .jk-running-text__track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: jk-running-text-{{ section.id }} var(--marquee-speed) linear infinite;
+    {% if section.settings.direction == 'right' %}
+      animation-direction: reverse;
+    {% endif %}
+  }
+
+  #RunningText-{{ section.id }}:hover .jk-running-text__track {
+    animation-play-state: {% if section.settings.pause_on_hover %}paused{% else %}running{% endif %};
+  }
+
+  #RunningText-{{ section.id }} .jk-running-text__group {
+    display: flex;
+    flex: none;
+    align-items: center;
+  }
+
+  #RunningText-{{ section.id }} .jk-running-text__item {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: clamp(2.2rem, 3vw, 5rem);
+    padding-right: clamp(2.2rem, 3vw, 5rem);
+    font-family: var(--font-heading-family);
+    font-size: clamp(1.55rem, 1.55vw, 2.15rem);
+    font-style: {% if section.settings.italic %}italic{% else %}normal{% endif %};
+    font-weight: {{ section.settings.font_weight }};
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+
+  #RunningText-{{ section.id }} .jk-running-text__separator {
+    width: .38rem;
+    height: .38rem;
+    flex: 0 0 .38rem;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: .8;
+  }
+
+  @keyframes jk-running-text-{{ section.id }} {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #RunningText-{{ section.id }} .jk-running-text__track {
+      animation-play-state: paused;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    #RunningText-{{ section.id }} .jk-running-text__item {
+      font-size: 1.55rem;
+    }
+  }
+{%- endstyle -%}
+
+{% if section.blocks.size > 0 %}
+  <section id="RunningText-{{ section.id }}" aria-label="{{ section.settings.accessibility_label | escape }}">
+    <div class="jk-running-text__track">
+      {% for copy in (1..2) %}
+        <div class="jk-running-text__group"{% if copy == 2 %} aria-hidden="true"{% endif %}>
+          {% for block in section.blocks %}
+            {% if block.settings.text != blank %}
+              <span class="jk-running-text__item"{% if copy == 1 %} {{ block.shopify_attributes }}{% endif %}>
+                <span>{{ block.settings.text | escape }}</span>
+                <span class="jk-running-text__separator" aria-hidden="true"></span>
+              </span>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "JK Running text",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#8B6AAE"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 12,
+      "max": 60,
+      "step": 2,
+      "unit": "s",
+      "label": "Animation speed",
+      "info": "Lower value runs faster.",
+      "default": 28
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Right to left" },
+        { "value": "right", "label": "Left to right" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on hover",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "italic",
+      "label": "Italic text",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font weight",
+      "default": "600",
+      "options": [
+        { "value": "400", "label": "Regular" },
+        { "value": "500", "label": "Medium" },
+        { "value": "600", "label": "Semi bold" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "accessibility_label",
+      "label": "Accessibility label",
+      "default": "What's included in the kit"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 14
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Air-Dry Clay"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "JK Running text",
+      "blocks": [
+        { "type": "text", "settings": { "text": "Round Mould" } },
+        { "type": "text", "settings": { "text": "Paint Set" } },
+        { "type": "text", "settings": { "text": "Tinted Paint & Brush Set" } },
+        { "type": "text", "settings": { "text": "Mini Ribbon & Hook" } },
+        { "type": "text", "settings": { "text": "Full Guide" } },
+        { "type": "text", "settings": { "text": "Air-Dry Clay" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

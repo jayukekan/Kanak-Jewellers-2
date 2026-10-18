@@ -1,0 +1,725 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "sh_hero_slideshow_fNjjTB": {
+      "type": "sh-hero-slideshow",
+      "blocks": {
+        "image_slide_ifLCjd": {
+          "type": "image_slide",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_02_04_50_AM.png",
+            "mob_image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_02_08_35_AM.png",
+            "heading": "",
+            "subheading": "<p><br/><br/></p>",
+            "button_label": "",
+            "button_link": "/",
+            "btn_outline": false,
+            "outline_btn_text_color": "#d85e67",
+            "border_radius": 22,
+            "button_size": 16,
+            "desktop_content_position": "middle-left",
+            "desktop_content_alignment": "left",
+            "show_text_box": false,
+            "mobile_content_position": "top",
+            "mobile_content_alignment": "center",
+            "heading_font_size": 30,
+            "content_font_size": 15,
+            "opacity": 0,
+            "overlay_color": "#121212",
+            "box_bg_color": "#ffffff",
+            "heading_color": "#121212",
+            "content_color": "#121212",
+            "btn_bg_color": "#d85e67",
+            "btn_text_color": "#ffffff",
+            "btn_border_color": "#d85e67",
+            "btn_hover_bg_color": "#ffffff",
+            "btn_hover_text_color": "#d85e67",
+            "btn_hover_border_color": "#d85e67",
+            "outline_btn_shadow_color": "rgba(0,0,0,0)"
+          }
+        },
+        "image_slide_fACBGd": {
+          "type": "image_slide",
+          "disabled": true,
+          "settings": {
+            "heading": "Image Slide",
+            "subheading": "<p>This is sample content for the brand. Use it to describe your brand.</p>",
+            "button_label": "Button label",
+            "button_link": "/",
+            "btn_outline": false,
+            "outline_btn_text_color": "#121212",
+            "border_radius": 0,
+            "button_size": 16,
+            "desktop_content_position": "middle-center",
+            "desktop_content_alignment": "center",
+            "show_text_box": true,
+            "mobile_content_position": "middle",
+            "mobile_content_alignment": "center",
+            "heading_font_size": 36,
+            "content_font_size": 18,
+            "opacity": 0,
+            "overlay_color": "#121212",
+            "box_bg_color": "#ffffff",
+            "heading_color": "#121212",
+            "content_color": "#121212",
+            "btn_bg_color": "#121212",
+            "btn_text_color": "#ffffff",
+            "btn_border_color": "#121212",
+            "btn_hover_bg_color": "#ffffff",
+            "btn_hover_text_color": "#121212",
+            "btn_hover_border_color": "#121212",
+            "outline_btn_shadow_color": "rgba(0,0,0,0)"
+          }
+        }
+      },
+      "block_order": [
+        "image_slide_ifLCjd",
+        "image_slide_fACBGd"
+      ],
+      "name": "SH: Hero slideshow",
+      "settings": {
+        "slide_height": "adapt",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "show_arrows": true,
+        "show_pagination": true,
+        "pagination_type": "dots",
+        "show_text_below_mob": false,
+        "sec_bg_color": "#ffffff",
+        "dots_color": "#121212",
+        "arrow_color": "#121212",
+        "arrow_bg_color": "#ffffff",
+        "arrow_border_color": "#121212",
+        "hover_arrow_color": "#ffffff",
+        "hover_arrow_bg_color": "#121212",
+        "hover_arrow_border_color": "#ffffff",
+        "arrow_size": 16,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "mob_padding_top": 0,
+        "mob_padding_bottom": 0,
+        "full_width": true,
+        "section_max_width": "1280"
+      }
+    },
+    "jk_trust_points_nNdKHt": {
+      "type": "jk-trust-points",
+      "blocks": {
+        "trust_point_kRkDYD": {
+          "type": "trust_point",
+          "settings": {
+            "icon": "truck",
+            "heading": "Free Shipping",
+            "text": "on orders above ₹999",
+            "link": ""
+          }
+        },
+        "trust_point_UKBind": {
+          "type": "trust_point",
+          "settings": {
+            "icon": "shield",
+            "heading": "Safe & Baby Friendly",
+            "text": "Materials",
+            "link": ""
+          }
+        },
+        "trust_point_qQG7nk": {
+          "type": "trust_point",
+          "settings": {
+            "icon": "heart",
+            "heading": "Loved by",
+            "text": "10,000+ Families",
+            "link": ""
+          }
+        },
+        "trust_point_GL7hpt": {
+          "type": "trust_point",
+          "settings": {
+            "icon": "gift",
+            "heading": "Thoughtful",
+            "text": "& Personalized",
+            "link": ""
+          }
+        },
+        "trust_point_kGwn79": {
+          "type": "trust_point",
+          "settings": {
+            "icon": "leaf",
+            "heading": "A Kinder",
+            "text": "Tomorrow",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "trust_point_kRkDYD",
+        "trust_point_UKBind",
+        "trust_point_qQG7nk",
+        "trust_point_GL7hpt",
+        "trust_point_kGwn79"
+      ],
+      "name": "Jk Trust Points",
+      "settings": {
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "subtext_color": "#565656",
+        "icon_color": "#ffffff",
+        "icon_background": "#40241b",
+        "border_color": "#000000",
+        "desktop_height": 76,
+        "icon_size": 38,
+        "heading_size": 15,
+        "text_size": 10,
+        "mobile_height": 60,
+        "mobile_icon_size": 30,
+        "mobile_heading_size": 11,
+        "mobile_text_size": 9
+      }
+    },
+    "jk_collection_banner_MrW4gU": {
+      "type": "jk-collection-banner",
+      "name": "Jk Collection Banner",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Baby Keepsakes Collection",
+        "heading_tag": "h2",
+        "description": "<p>Thoughtfully designed keepsakes to capture every little milestone — because these moments only happen once.</p>",
+        "button_text": "Shop the Collection",
+        "button_link": "",
+        "show_arrow": true,
+        "show_leaf": true,
+        "show_script": true,
+        "script_text": "Cherish Forever",
+        "section_background": "#ffffff",
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "subtext_color": "#000000",
+        "accent_color": "#cbafa4",
+        "button_background": "#40241b",
+        "button_text_color": "#ffffff",
+        "full_width": false,
+        "desktop_height": 160,
+        "desktop_heading_size": 27,
+        "desktop_text_size": 12,
+        "border_radius": 0,
+        "desktop_spacing_top": 0,
+        "desktop_spacing_bottom": 0,
+        "mobile_height": 170,
+        "mobile_heading_size": 25,
+        "mobile_text_size": 12,
+        "mobile_border_radius": 14,
+        "mobile_spacing_top": 10,
+        "mobile_spacing_bottom": 10
+      }
+    },
+    "jk_circle_collections_DNNr6A": {
+      "type": "jk-circle-collections",
+      "blocks": {
+        "collection_areynm": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_8NNbr3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_dCqMTx": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_3NDTtJ": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_g3zyVq": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_yaCd7x": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "link": ""
+          }
+        },
+        "collection_AH6d9w": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_areynm",
+        "collection_8NNbr3",
+        "collection_dCqMTx",
+        "collection_3NDTtJ",
+        "collection_g3zyVq",
+        "collection_yaCd7x",
+        "collection_AH6d9w"
+      ],
+      "disabled": true,
+      "name": "jk circle links",
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "full_width": false,
+        "alignment": "center",
+        "color_scheme": "",
+        "image_size": 124,
+        "card_gap": 16,
+        "label_gap": 24,
+        "label_size": 14,
+        "mobile_image_size": 96,
+        "mobile_gap": 14,
+        "mobile_label_gap": 14,
+        "border_width": 0,
+        "border_color": "#d8d2cf",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".card__heading a {font-weight: 600;}",
+        ".quick-add__submit {background: #40241b !important; color: #fff !important; border-radius: 30px !important;}"
+      ],
+      "settings": {
+        "collection": "all",
+        "products_to_show": 25,
+        "title": "Little Keepsakes, Big Memories",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 40,
+        "padding_bottom": 36
+      }
+    },
+    "jk_reels_gallery_home": {
+      "type": "jk-reels-gallery",
+      "blocks": {
+        "reel_unboxing": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/cc41fc456ffc495c8e1d312d54925fad.mp4",
+            "title": "Unboxing the Kit",
+            "link": "shopify://products/12-months-of-tiny-prints-magazine"
+          }
+        },
+        "reel_print": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/949edd194a214ac6b42d7b2d36a23128.mp4",
+            "title": "Creating the Print",
+            "link": "shopify://products/baby-hand-footprint-hanging-frame-white-edition"
+          }
+        },
+        "reel_result": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/9c4cabab258d4c2785040bc3a2dcc092.mp4",
+            "title": "The Final Result",
+            "link": ""
+          }
+        },
+        "reel_reactions": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/49daed0d9fa34853ad9f12bb09d47379.mp4",
+            "title": "Parent Reactions",
+            "link": ""
+          }
+        },
+        "reel_adm3ze": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/IMG_8145.MP4",
+            "title": "Creating the Print",
+            "link": ""
+          }
+        },
+        "reel_CAyQzT": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/IMG_8131.MP4",
+            "title": "Creating the Print",
+            "link": ""
+          }
+        },
+        "reel_wkByeE": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/IMG_8146.MP4",
+            "title": "Creating the Print",
+            "link": ""
+          }
+        },
+        "reel_8RMt8E": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/IMG_8132.MP4",
+            "title": "Creating the Print",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "reel_unboxing",
+        "reel_print",
+        "reel_result",
+        "reel_reactions",
+        "reel_adm3ze",
+        "reel_CAyQzT",
+        "reel_wkByeE",
+        "reel_8RMt8E"
+      ],
+      "name": "VLORA Reels gallery",
+      "settings": {
+        "eyebrow": "Reels / Video Section",
+        "heading": "Made by Parents. Loved by Little Ones.",
+        "subheading": "<p>See how families are turning everyday moments into forever memories.</p>",
+        "autoplay_videos": true,
+        "loop_videos": true,
+        "show_video_controls": false,
+        "heading_size": 30,
+        "mobile_heading_size": 25,
+        "card_gap": 16,
+        "card_radius": 14,
+        "background_color": "#ffffff",
+        "text_color": "#000000",
+        "subtext_color": "#625b57",
+        "accent_color": "#40241b",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "mobile_padding_top": 36,
+        "mobile_padding_bottom": 36
+      }
+    },
+    "jk_how_it_works_home": {
+      "type": "jk-how-it-works",
+      "blocks": {
+        "step_prepare": {
+          "type": "step",
+          "settings": {
+            "title": "Prepare",
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_15_2026_11_17_49_PM.png",
+            "description": "<p>Open your kit and prepare the material.</p>",
+            "link": ""
+          }
+        },
+        "step_press": {
+          "type": "step",
+          "settings": {
+            "title": "Press",
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_15_2026_11_42_12_PM.png",
+            "description": "<p>Capture their tiny hand or footprint.</p>",
+            "link": ""
+          }
+        },
+        "step_create": {
+          "type": "step",
+          "settings": {
+            "title": "Create",
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_15_2026_11_17_59_PM.png",
+            "description": "<p>Add the finishing touches.</p>",
+            "link": ""
+          }
+        },
+        "step_forever": {
+          "type": "step",
+          "settings": {
+            "title": "Forever",
+            "image": "shopify://shop_images/ChatGPT_Image_Sep_15_2026_11_18_10_PM.png",
+            "description": "<p>Display your memory at home.</p>",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "step_prepare",
+        "step_press",
+        "step_create",
+        "step_forever"
+      ],
+      "name": "VLORA How it works",
+      "settings": {
+        "eyebrow": "How It Works",
+        "heading": "A Forever Memory in Just a Few Simple Steps",
+        "subheading": "",
+        "heading_size": 30,
+        "mobile_heading_size": 25,
+        "step_gap": 24,
+        "image_radius": 14,
+        "background_color": "#ffffff",
+        "text_color": "#241d1a",
+        "subtext_color": "#000000",
+        "accent_color": "#40241b",
+        "line_color": "#ead9d2",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "mobile_padding_top": 36,
+        "mobile_padding_bottom": 36
+      }
+    },
+    "jk_featured_story_gAgL9X": {
+      "type": "jk-featured-story",
+      "blocks": {
+        "benefit_DFEQbq": {
+          "type": "benefit",
+          "settings": {
+            "text": "Capture their hand & footprints at home"
+          }
+        },
+        "benefit_FrdKmh": {
+          "type": "benefit",
+          "settings": {
+            "text": "Turn a little moment into timeless wall art"
+          }
+        },
+        "benefit_xcpiaY": {
+          "type": "benefit",
+          "settings": {
+            "text": "A meaningful keepsake for parents & families"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_DFEQbq",
+        "benefit_FrdKmh",
+        "benefit_xcpiaY"
+      ],
+      "name": "Jk Featured Product Story",
+      "settings": {
+        "product": "baby-hand-footprint-hanging-frame-white-edition",
+        "eyebrow": "Made from their tiniest moments",
+        "heading": "Tiny Hands. Tiny Feet. Memories That Stay Forever.",
+        "heading_tag": "h2",
+        "description": "",
+        "button_text": "Create Your Keepsake",
+        "button_link": "shopify://products/baby-hand-footprint-hanging-frame-white-edition",
+        "show_arrow": true,
+        "show_image_badge": false,
+        "image_badge": "Best Seller",
+        "section_background": "#ffffff",
+        "background_color": "#40241b",
+        "text_color": "#ffffff",
+        "subtext_color": "#ede7e5",
+        "accent_color": "#d75f68",
+        "button_background": "#ffffff",
+        "button_text_color": "#000000",
+        "desktop_height": 360,
+        "image_width": 52,
+        "desktop_content_padding": 44,
+        "desktop_heading_size": 38,
+        "eyebrow_size": 12,
+        "desktop_text_size": 14,
+        "benefit_size": 13,
+        "desktop_radius": 14,
+        "button_radius": 8,
+        "desktop_spacing_top": 0,
+        "desktop_spacing_bottom": 0,
+        "mobile_image_ratio": "16 / 10",
+        "mobile_content_padding": 18,
+        "mobile_heading_size": 27,
+        "mobile_eyebrow_size": 10,
+        "mobile_text_size": 12,
+        "mobile_benefit_size": 12,
+        "mobile_radius": 16,
+        "mobile_spacing_top": 12,
+        "mobile_spacing_bottom": 12
+      }
+    },
+    "jk_dual_phd93g": {
+      "type": "jk-dual",
+      "disabled": true,
+      "name": "jk dual editorial",
+      "settings": {
+        "full_width": true,
+        "image_ratio": "square",
+        "panel_gap": 0,
+        "color_scheme": "",
+        "left_product": "baby-hand-footprint-clay-kit-a-memory-to-keep-forever",
+        "left_image": "shopify://shop_images/ChatGPT_Image_Aug_27_2026_09_18_20_PM.webp",
+        "heading_line_1": "Designed to Be Worn",
+        "heading_line_2": "Every Day",
+        "heading_size": "medium",
+        "content_vertical": "middle",
+        "content_alignment": "center",
+        "left_overlay_opacity": 10,
+        "left_text_color": "#ffffff",
+        "button_label": "Discover New Arrivals",
+        "button_link": "",
+        "button_background": "#ffffff",
+        "button_text_color": "#111111",
+        "button_radius": 24,
+        "right_product": "baby-footprint-handprint-clay-kit-individual",
+        "right_image": "shopify://shop_images/21bedf0e-bac7-4a2e-8547-ec2af102ba6f_800x800_crop_center_9853ec7c-11f6-4e8f-b54b-3d314e19914c.webp",
+        "right_title": "",
+        "right_link": "",
+        "show_product_title": true,
+        "show_product_price": true,
+        "custom_price": "",
+        "right_text_color": "#ffffff",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
+    },
+    "jk_testimonials_home": {
+      "type": "jk-testimonials",
+      "blocks": {
+        "testimonial_priya": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Ishita J.",
+            "location": "Mumbai, India",
+            "rating": 5,
+            "verified": true,
+            "review": "<p>12 months ki baby memories organized way me preserve ho jati hain. Purpose ke hisaab se product thoughtfully bana hua lagta hai.<br/><br/></p>"
+          }
+        },
+        "testimonial_rahul": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Meera K.",
+            "location": "Bengaluru, India",
+            "rating": 5,
+            "verified": true,
+            "review": "<p><strong>Highly Recommend It!</strong></p><p>The structure makes it easy to turn small milestones into a meaningful keepsake. It felt thoughtfully designed for the purpose.</p>"
+          }
+        },
+        "testimonial_neha": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Amit T.",
+            "location": "Pune, India",
+            "rating": 5,
+            "verified": true,
+            "review": "<p><strong>Exactly What I Needed</strong></p><p>The structure makes it easy to turn small milestones into a meaningful keepsake. It felt thoughtfully designed for the purpose.<br/></p>"
+          }
+        },
+        "testimonial_dNkmtV": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Harsh V.",
+            "location": "Mumbai, India",
+            "rating": 5,
+            "verified": true,
+            "review": "<p><strong>Very Happy With It</strong></p><p>It feels like a thoughtful first-year memory project. I am very happy with how it turned out.</p>"
+          }
+        },
+        "testimonial_ndwNe8": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Shreya J.",
+            "location": "Mumbai, India",
+            "rating": 5,
+            "verified": true,
+            "review": "<p><strong>Such a Nice Product</strong></p><p>I really liked having both the memory activity and a display piece in one kit. I would happily use something like this again.</p>"
+          }
+        },
+        "testimonial_V94iBa": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Aarav M.",
+            "location": "Mumbai, India",
+            "rating": 5,
+            "verified": true,
+            "review": "<p><strong>Pretty Good Overall</strong></p><p>I really liked having both the memory activity and a display piece in one kit. The impression step needs a little patience.<br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_priya",
+        "testimonial_rahul",
+        "testimonial_neha",
+        "testimonial_dNkmtV",
+        "testimonial_ndwNe8",
+        "testimonial_V94iBa"
+      ],
+      "name": "VLORA Parent testimonials",
+      "settings": {
+        "heading": "Parents Are Loving VLORA INDIA",
+        "subheading": "",
+        "verified_label": "Verified purchase",
+        "heading_size": 30,
+        "mobile_heading_size": 25,
+        "text_size": 12,
+        "avatar_size": 64,
+        "card_min_height": 150,
+        "card_gap": 16,
+        "card_radius": 12,
+        "background_color": "#ffffff",
+        "card_background": "#fffdfb",
+        "card_border": "#40241b",
+        "text_color": "#241d1a",
+        "muted_color": "#5d5652",
+        "star_color": "#e9a91b",
+        "badge_color": "#78b751",
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "mobile_padding_top": 36,
+        "mobile_padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "sh_hero_slideshow_fNjjTB",
+    "jk_trust_points_nNdKHt",
+    "jk_collection_banner_MrW4gU",
+    "jk_circle_collections_DNNr6A",
+    "featured_collection",
+    "jk_reels_gallery_home",
+    "jk_how_it_works_home",
+    "jk_featured_story_gAgL9X",
+    "jk_dual_phd93g",
+    "jk_testimonials_home"
+  ]
+}

@@ -1,0 +1,499 @@
+{%- liquid
+  assign configured_products = 0
+  for block in section.blocks
+    if block.settings.product != blank
+      assign configured_products = configured_products | plus: 1
+    endif
+  endfor
+
+  assign fallback_collection = product.collections.first
+  if fallback_collection == blank
+    assign fallback_collection = collections.all
+  endif
+
+  assign fallback_product_count = 0
+  if configured_products == 0 and fallback_collection != blank
+    for candidate in fallback_collection.products limit: 12
+      if candidate.id != product.id
+        assign fallback_product_count = fallback_product_count | plus: 1
+        if fallback_product_count == 3
+          break
+        endif
+      endif
+    endfor
+  endif
+
+  if configured_products == 0 and fallback_product_count == 0 and collections.all != blank
+    assign fallback_collection = collections.all
+    for candidate in fallback_collection.products limit: 12
+      if candidate.id != product.id
+        assign fallback_product_count = fallback_product_count | plus: 1
+        if fallback_product_count == 3
+          break
+        endif
+      endif
+    endfor
+  endif
+-%}
+
+{%- style -%}
+  #FrequentlyBought-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round }}px;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt {
+    overflow: hidden;
+    border: .1rem solid rgba(var(--color-foreground), .12);
+    border-radius: 1.4rem;
+    background: rgb(var(--color-background));
+    box-shadow: 0 .7rem 2rem rgba(var(--color-foreground), .04);
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__heading {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    margin: 0;
+    padding: 1.3rem 1.8rem;
+    border-bottom: .1rem solid rgba(var(--color-foreground), .1);
+    font-size: 1.55rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__tag {
+    padding: .45rem .9rem;
+    border-radius: 999px;
+    background: #fbedeb;
+    color: #c8505b;
+    font-size: .9rem;
+    font-weight: 700;
+    letter-spacing: .03em;
+    white-space: nowrap;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(22rem, .46fr);
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__products {
+    display: flex;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__product {
+    display: grid;
+    width: min(18rem, 30%);
+    flex: 1 1 0;
+    grid-template-rows: auto 1fr;
+    gap: .8rem;
+    min-width: 0;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__product.is-not-selected {
+    opacity: .48;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__choose {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    margin: 0 0 .55rem;
+    color: rgba(var(--color-foreground), .82);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__choose input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__checkmark {
+    display: grid;
+    width: 1.7rem;
+    height: 1.7rem;
+    place-items: center;
+    border: .1rem solid rgba(var(--color-foreground), .35);
+    border-radius: .35rem;
+    background: #fff;
+    color: #fff;
+    transition: background .18s ease, border-color .18s ease;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__checkmark svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    opacity: 0;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__choose input:checked + .jk-fbt__checkmark {
+    border-color: #d65d66;
+    background: #d65d66;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__choose input:checked + .jk-fbt__checkmark svg { opacity: 1; }
+  #FrequentlyBought-{{ section.id }} .jk-fbt__choose input:focus-visible + .jk-fbt__checkmark { outline: .2rem solid rgb(var(--color-foreground)); outline-offset: .2rem; }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__image {
+      display: block;
+      width: 100%;
+    height: 12rem;
+    padding: .3rem;
+    border-radius: .7rem;
+    background: #fff;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__name {
+    display: block;
+    margin: 0;
+    color: rgb(var(--color-foreground));
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-decoration: none;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__price {
+    display: block;
+    margin-top: .35rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__variant {
+    width: 100%;
+    min-height: 3.1rem;
+    margin-top: .65rem;
+    padding: .45rem 2.9rem .45rem .7rem;
+    border: .1rem solid rgba(var(--color-foreground), .18);
+    border-radius: .5rem;
+    background-color: rgb(var(--color-background));
+    color: rgb(var(--color-foreground));
+    font: inherit;
+    font-size: 1rem;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__plus {
+    display: grid;
+    width: 3rem;
+    flex: 0 0 3rem;
+    place-items: center;
+    color: rgb(var(--color-foreground));
+    font-size: 2.1rem;
+    font-weight: 400;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.6rem 1.8rem;
+    border-left: .1rem solid rgba(var(--color-foreground), .1);
+    background: rgba(var(--color-foreground), .018);
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__total-label {
+    margin: 0;
+    color: rgba(var(--color-foreground), .65);
+    font-size: 1.05rem;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__total {
+    margin: .25rem 0 .9rem;
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__save {
+    display: inline-flex;
+    align-self: flex-start;
+    margin: 0 0 1.1rem;
+    padding: .45rem .8rem;
+    border-radius: .45rem;
+    background: #fbedeb;
+    color: #c8505b;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__save[hidden] { display: none; }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__button {
+    min-height: 4.1rem;
+    border: 0;
+    border-radius: .55rem;
+    background: #d65d66;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__button[disabled] { opacity: .65; cursor: wait; }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__notice {
+    min-height: 1.5rem;
+    margin: .8rem 0 0;
+    color: rgba(var(--color-foreground), .68);
+    font-size: 1rem;
+  }
+
+  #FrequentlyBought-{{ section.id }} .jk-fbt__empty {
+    padding: 2rem;
+    color: rgba(var(--color-foreground), .7);
+    text-align: center;
+  }
+
+  @media screen and (min-width: 750px) {
+    #FrequentlyBought-{{ section.id }} { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; }
+  }
+
+  @media screen and (max-width: 749px) {
+    #FrequentlyBought-{{ section.id }} .jk-fbt__heading { padding: 1.2rem; font-size: 1.35rem; }
+    #FrequentlyBought-{{ section.id }} .jk-fbt__body { grid-template-columns: 1fr; }
+    #FrequentlyBought-{{ section.id }} .jk-fbt__products {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.4rem 1.2rem;
+      padding: 1.2rem;
+      overflow: hidden;
+    }
+    #FrequentlyBought-{{ section.id }} .jk-fbt__product { width: auto; min-width: 0; }
+    #FrequentlyBought-{{ section.id }} .jk-fbt__image { height: 10rem; }
+    #FrequentlyBought-{{ section.id }} .jk-fbt__plus { display: none; }
+    #FrequentlyBought-{{ section.id }} .jk-fbt__choose { font-size: .9rem; }
+    #FrequentlyBought-{{ section.id }} .jk-fbt__summary { border-top: .1rem solid rgba(var(--color-foreground), .1); border-left: 0; }
+  }
+{%- endstyle -%}
+
+{% if configured_products > 0 or fallback_product_count > 0 %}
+  <section id="FrequentlyBought-{{ section.id }}" class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="page-width">
+      <div class="jk-fbt" data-fbt-section>
+      <h2 class="jk-fbt__heading">
+        {{ section.settings.heading | escape }}
+        {% if section.settings.tag != blank %}<span class="jk-fbt__tag">{{ section.settings.tag | escape }}</span>{% endif %}
+      </h2>
+
+        <div class="jk-fbt__body">
+          <div class="jk-fbt__products">
+            <article class="jk-fbt__product" data-fbt-product>
+              {% if product.featured_image != blank %}
+                {{ product.featured_image | image_url: width: 420 | image_tag: class: 'jk-fbt__image', loading: 'lazy', alt: product.title }}
+              {% endif %}
+              <div>
+                <label class="jk-fbt__choose">
+                  <input type="checkbox" data-fbt-include checked>
+                  <span class="jk-fbt__checkmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span>Add to bundle</span>
+                </label>
+                <a class="jk-fbt__name" href="{{ product.url }}">{{ product.title | escape }}</a>
+                <span class="jk-fbt__price" data-fbt-price>{{ product.selected_or_first_available_variant.price | money }}</span>
+                {% if product.variants.size > 1 %}
+                  <select class="jk-fbt__variant" aria-label="Choose variant for {{ product.title | escape }}" data-fbt-variant>
+                    {% for variant in product.variants %}
+                      <option value="{{ variant.id }}" data-price="{{ variant.price }}" data-compare-price="{{ variant.compare_at_price | default: 0 }}"{% if variant.id == product.selected_or_first_available_variant.id %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title | escape }}{% unless variant.available %} — Sold out{% endunless %}</option>
+                    {% endfor %}
+                  </select>
+                {% else %}
+                  <input type="hidden" data-fbt-variant value="{{ product.selected_or_first_available_variant.id }}" data-price="{{ product.selected_or_first_available_variant.price }}" data-compare-price="{{ product.selected_or_first_available_variant.compare_at_price | default: 0 }}">
+                {% endif %}
+              </div>
+            </article>
+
+            {% if configured_products > 0 %}
+              {% for block in section.blocks %}
+                {% assign bundle_product = block.settings.product %}
+                {% if bundle_product != blank %}
+                  <span class="jk-fbt__plus" aria-hidden="true">+</span>
+                  <article class="jk-fbt__product" data-fbt-product {{ block.shopify_attributes }}>
+                    {% if bundle_product.featured_image != blank %}
+                      {{ bundle_product.featured_image | image_url: width: 420 | image_tag: class: 'jk-fbt__image', loading: 'lazy', alt: bundle_product.title }}
+                    {% endif %}
+                    <div>
+                      <label class="jk-fbt__choose">
+                        <input type="checkbox" data-fbt-include checked>
+                        <span class="jk-fbt__checkmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                        <span>Add to bundle</span>
+                      </label>
+                      <a class="jk-fbt__name" href="{{ bundle_product.url }}">{{ bundle_product.title | escape }}</a>
+                      <span class="jk-fbt__price" data-fbt-price>{{ bundle_product.selected_or_first_available_variant.price | money }}</span>
+                      {% if bundle_product.variants.size > 1 %}
+                        <select class="jk-fbt__variant" aria-label="Choose variant for {{ bundle_product.title | escape }}" data-fbt-variant>
+                          {% for variant in bundle_product.variants %}
+                            <option value="{{ variant.id }}" data-price="{{ variant.price }}" data-compare-price="{{ variant.compare_at_price | default: 0 }}"{% if variant.id == bundle_product.selected_or_first_available_variant.id %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title | escape }}{% unless variant.available %} — Sold out{% endunless %}</option>
+                          {% endfor %}
+                        </select>
+                      {% else %}
+                        <input type="hidden" data-fbt-variant value="{{ bundle_product.selected_or_first_available_variant.id }}" data-price="{{ bundle_product.selected_or_first_available_variant.price }}" data-compare-price="{{ bundle_product.selected_or_first_available_variant.compare_at_price | default: 0 }}">
+                      {% endif %}
+                    </div>
+                  </article>
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              {% assign fallback_rendered = 0 %}
+              {% for bundle_product in fallback_collection.products limit: 12 %}
+                {% if bundle_product.id != product.id %}
+                  <span class="jk-fbt__plus" aria-hidden="true">+</span>
+                  <article class="jk-fbt__product" data-fbt-product>
+                  {% if bundle_product.featured_image != blank %}
+                    {{ bundle_product.featured_image | image_url: width: 420 | image_tag: class: 'jk-fbt__image', loading: 'lazy', alt: bundle_product.title }}
+                  {% endif %}
+                  <div>
+                    <label class="jk-fbt__choose">
+                      <input type="checkbox" data-fbt-include checked>
+                      <span class="jk-fbt__checkmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.2 4.2L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                      <span>Add to bundle</span>
+                    </label>
+                    <a class="jk-fbt__name" href="{{ bundle_product.url }}">{{ bundle_product.title | escape }}</a>
+                    <span class="jk-fbt__price" data-fbt-price>{{ bundle_product.selected_or_first_available_variant.price | money }}</span>
+                    {% if bundle_product.variants.size > 1 %}
+                      <select class="jk-fbt__variant" aria-label="Choose variant for {{ bundle_product.title | escape }}" data-fbt-variant>
+                        {% for variant in bundle_product.variants %}
+                          <option value="{{ variant.id }}" data-price="{{ variant.price }}" data-compare-price="{{ variant.compare_at_price | default: 0 }}"{% if variant.id == bundle_product.selected_or_first_available_variant.id %} selected{% endif %}{% unless variant.available %} disabled{% endunless %}>{{ variant.title | escape }}{% unless variant.available %} — Sold out{% endunless %}</option>
+                        {% endfor %}
+                      </select>
+                    {% else %}
+                      <input type="hidden" data-fbt-variant value="{{ bundle_product.selected_or_first_available_variant.id }}" data-price="{{ bundle_product.selected_or_first_available_variant.price }}" data-compare-price="{{ bundle_product.selected_or_first_available_variant.compare_at_price | default: 0 }}">
+                    {% endif %}
+                  </div>
+                  </article>
+                  {% assign fallback_rendered = fallback_rendered | plus: 1 %}
+                  {% if fallback_rendered == 3 %}{% break %}{% endif %}
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="jk-fbt__summary">
+            <p class="jk-fbt__total-label">Total</p>
+            <p class="jk-fbt__total" data-fbt-total></p>
+            <p class="jk-fbt__save" data-fbt-save hidden></p>
+            <button class="jk-fbt__button" type="button" data-fbt-add>{{ section.settings.button_label | escape }}</button>
+            <p class="jk-fbt__notice" aria-live="polite" data-fbt-notice></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+<script>
+  (() => {
+    const section = document.querySelector('#FrequentlyBought-{{ section.id }} [data-fbt-section]');
+    if (!section || section.dataset.initialized) return;
+    section.dataset.initialized = 'true';
+    const moneyFormat = {{ shop.money_with_currency_format | json }};
+    const rootUrl = {{ routes.root_url | json }};
+    const total = section.querySelector('[data-fbt-total]');
+    const save = section.querySelector('[data-fbt-save]');
+    const notice = section.querySelector('[data-fbt-notice]');
+    const button = section.querySelector('[data-fbt-add]');
+    const products = [...section.querySelectorAll('[data-fbt-product]')];
+    const formatMoney = (cents) => window.Shopify && Shopify.formatMoney ? Shopify.formatMoney(cents, moneyFormat) : `₹${(cents / 100).toLocaleString('en-IN')}`;
+
+    const refresh = () => {
+      let price = 0;
+      let compare = 0;
+      let selectedProducts = 0;
+      products.forEach((product) => {
+        const include = product.querySelector('[data-fbt-include]');
+        const field = product.querySelector('[data-fbt-variant]');
+        if (!field) return;
+        const option = field.options ? field.options[field.selectedIndex] : field;
+        const itemPrice = Number(option.dataset.price || 0);
+        const itemCompare = Number(option.dataset.comparePrice || 0);
+        const selected = include?.checked;
+        product.classList.toggle('is-not-selected', !selected);
+        field.disabled = !selected;
+        if (selected) {
+          selectedProducts += 1;
+          price += itemPrice;
+          compare += itemCompare > itemPrice ? itemCompare : itemPrice;
+        }
+        const priceLabel = product.querySelector('[data-fbt-price]');
+        if (priceLabel) priceLabel.textContent = formatMoney(itemPrice);
+      });
+      total.textContent = formatMoney(price);
+      button.disabled = selectedProducts === 0;
+      const saving = compare - price;
+      if (saving > 0) {
+        save.hidden = false;
+        save.textContent = `Save ${formatMoney(saving)}`;
+      } else {
+        save.hidden = true;
+      }
+    };
+
+    products.forEach((product) => {
+      product.querySelector('[data-fbt-variant]')?.addEventListener('change', refresh);
+      product.querySelector('[data-fbt-include]')?.addEventListener('change', refresh);
+    });
+    refresh();
+
+    button?.addEventListener('click', async () => {
+      const items = products.map((product) => {
+        if (!product.querySelector('[data-fbt-include]')?.checked) return null;
+        const field = product.querySelector('[data-fbt-variant]');
+        return field ? { id: Number(field.value), quantity: 1 } : null;
+      }).filter((item) => item?.id);
+      if (!items.length) return;
+      button.disabled = true;
+      notice.textContent = 'Adding bundle…';
+      try {
+        const response = await fetch(`${rootUrl}cart/add.js`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ items })
+        });
+        if (!response.ok) throw new Error('Unable to add bundle');
+        notice.textContent = 'Bundle added to your cart.';
+        document.dispatchEvent(new CustomEvent('cart:refresh'));
+      } catch (error) {
+        notice.textContent = 'Could not add the bundle. Please try again.';
+      } finally {
+        button.disabled = false;
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "JK Frequently bought",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 3,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently Bought Together" },
+    { "type": "text", "id": "tag", "label": "Tag", "default": "Most Loved Combo" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add bundle to cart" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top padding", "default": 36 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom padding", "default": 36 }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Bundle product",
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "JK Frequently bought" }]
+}
+{% endschema %}

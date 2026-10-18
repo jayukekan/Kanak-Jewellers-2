@@ -1,0 +1,170 @@
+{%- style -%}
+  #ProductFaq-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round }}px;
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__inner {
+    max-width: {{ section.settings.content_width }}rem;
+    margin: 0 auto;
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__header {
+    margin-bottom: 3.2rem;
+    text-align: center;
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__eyebrow {
+    margin: 0 0 1.1rem;
+    color: rgb(var(--color-button));
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__heading {
+    margin: 0;
+    font-size: clamp(3.2rem, 4vw, 4.8rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -.035em;
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__items {
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__item {
+    border: .1rem solid rgba(var(--color-button), .24);
+    border-radius: 1.5rem;
+    background: rgb(var(--color-background));
+    overflow: hidden;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__item[open] {
+    border-color: rgb(var(--color-button));
+    box-shadow: 0 .8rem 2rem rgba(var(--color-button), .09);
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.8rem;
+    padding: 2.1rem 2rem;
+    color: rgb(var(--color-foreground));
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.35;
+    list-style: none;
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__question::-webkit-details-marker { display: none; }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__toggle {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    flex: 0 0 3rem;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(var(--color-button), .1);
+    color: rgb(var(--color-button));
+    transition: transform .2s ease, background .2s ease;
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__toggle svg { width: 1.5rem; height: 1.5rem; }
+  #ProductFaq-{{ section.id }} .jk-product-faq__item[open] .jk-product-faq__toggle { background: rgb(var(--color-button)); color: rgb(var(--color-button-text)); transform: rotate(45deg); }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__answer {
+    padding: 0 6.8rem 2.1rem 2rem;
+    color: rgba(var(--color-foreground), .68);
+    font-size: 1.4rem;
+    line-height: 1.65;
+  }
+
+  #ProductFaq-{{ section.id }} .jk-product-faq__answer > * { margin-top: 0; margin-bottom: 0; }
+
+  @media screen and (min-width: 750px) {
+    #ProductFaq-{{ section.id }} { padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px; }
+  }
+
+  @media screen and (max-width: 749px) {
+    #ProductFaq-{{ section.id }} .jk-product-faq__header { margin-bottom: 2.4rem; }
+    #ProductFaq-{{ section.id }} .jk-product-faq__heading { font-size: 3.2rem; }
+    #ProductFaq-{{ section.id }} .jk-product-faq__items { gap: .9rem; }
+    #ProductFaq-{{ section.id }} .jk-product-faq__item { border-radius: 1.1rem; }
+    #ProductFaq-{{ section.id }} .jk-product-faq__question { padding: 1.6rem 1.4rem; font-size: 1.4rem; }
+    #ProductFaq-{{ section.id }} .jk-product-faq__toggle { width: 2.7rem; height: 2.7rem; flex-basis: 2.7rem; }
+    #ProductFaq-{{ section.id }} .jk-product-faq__answer { padding: 0 1.4rem 1.7rem; font-size: 1.3rem; }
+  }
+{%- endstyle -%}
+
+<section id="ProductFaq-{{ section.id }}" class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="jk-product-faq__inner">
+      <header class="jk-product-faq__header">
+        {% if section.settings.eyebrow != blank %}<p class="jk-product-faq__eyebrow">{{ section.settings.eyebrow | escape }}</p>{% endif %}
+        {% if section.settings.heading != blank %}<h2 class="jk-product-faq__heading">{{ section.settings.heading }}</h2>{% endif %}
+      </header>
+      <div class="jk-product-faq__items">
+        {% for block in section.blocks %}
+          {% if block.settings.question != blank %}
+            <details class="jk-product-faq__item" {{ block.shopify_attributes }}{% if block.settings.open_by_default %} open{% endif %}>
+              <summary class="jk-product-faq__question">
+                <span>{{ block.settings.question | escape }}</span>
+                <span class="jk-product-faq__toggle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+              </summary>
+              {% if block.settings.answer != blank %}<div class="jk-product-faq__answer rte">{{ block.settings.answer }}</div>{% endif %}
+            </details>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JK Product FAQ",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": { "templates": ["product"] },
+  "max_blocks": 12,
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "text", "id": "eyebrow", "label": "Small heading", "default": "FAQ" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Good to know." },
+    { "type": "range", "id": "content_width", "min": 55, "max": 100, "step": 5, "unit": "rem", "label": "Content width", "default": 75 },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Top padding", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "label": "Bottom padding", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Is the clay safe for newborns?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Yes. Our clay is carefully selected to be gentle and easy to use. Always supervise your baby while creating the print.</p>" },
+        { "type": "checkbox", "id": "open_by_default", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "JK Product FAQ",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "Is the clay safe for newborns?", "answer": "<p>Yes. Our clay is carefully selected to be gentle and easy to use. Always supervise your baby while creating the print.</p>" } },
+        { "type": "faq", "settings": { "question": "How long does the print take to dry?", "answer": "<p>Allow the clay to air-dry flat for 24–48 hours. No oven or kiln is needed.</p>" } },
+        { "type": "faq", "settings": { "question": "What if I make a mistake while pressing the print?", "answer": "<p>Simply knead the clay again, flatten it and try once more before it begins to dry.</p>" } },
+        { "type": "faq", "settings": { "question": "How long does delivery take?", "answer": "<p>Delivery timing is shown at checkout and can vary by location.</p>" } },
+        { "type": "faq", "settings": { "question": "Can I customise this as a gift?", "answer": "<p>Yes. It makes a thoughtful keepsake gift for growing families.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

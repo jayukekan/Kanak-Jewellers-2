@@ -1,0 +1,32 @@
+{{ 'jk-whatsapp-chat.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign whatsapp_number = settings.vlora_whatsapp_number | default: shop.phone
+  assign whatsapp_number = whatsapp_number | remove: '+' | remove: ' ' | remove: '-' | remove: '(' | remove: ')'
+  assign whatsapp_message = settings.vlora_whatsapp_message | default: 'Hi, I need help with my order.'
+  assign whatsapp_label = settings.vlora_whatsapp_label | default: 'Chat with us'
+  assign whatsapp_url = routes.root_url | append: 'pages/contact'
+
+  if whatsapp_number != blank
+    assign whatsapp_message_encoded = whatsapp_message | url_encode
+    assign whatsapp_url = 'https://wa.me/' | append: whatsapp_number | append: '?text=' | append: whatsapp_message_encoded
+  endif
+-%}
+
+{%- if settings.vlora_whatsapp_enabled != false -%}
+  <a
+    class="vlora-whatsapp-chat"
+    href="{{ whatsapp_url }}"
+    {% if whatsapp_number != blank %}target="_blank" rel="noopener noreferrer"{% endif %}
+    aria-label="{{ whatsapp_label | escape }}"
+  >
+    <span class="vlora-whatsapp-chat__label">{{ whatsapp_label }}</span>
+    <span class="vlora-whatsapp-chat__icon" aria-hidden="true">
+      <svg viewBox="0 0 32 32" fill="none" focusable="false">
+        <path d="M26.63 5.31A14.86 14.86 0 0 0 16.08 1C7.87 1 1.2 7.67 1.2 15.89c0 2.62.68 5.17 1.97 7.41L1.08 31l7.9-2.07a14.85 14.85 0 0 0 7.09 1.8h.01c8.2 0 14.87-6.67 14.87-14.88 0-3.97-1.55-7.7-4.32-10.54Z" fill="currentColor"/>
+        <path d="M16.08 28.22h-.01a12.3 12.3 0 0 1-6.26-1.71l-.45-.27-4.69 1.23 1.25-4.57-.29-.47a12.35 12.35 0 1 1 10.45 5.79Z" fill="#25D366"/>
+        <path d="M22.84 19.02c-.37-.19-2.17-1.07-2.51-1.19-.34-.13-.59-.19-.84.18-.25.38-.96 1.19-1.18 1.44-.22.25-.44.28-.81.1-.38-.19-1.59-.59-3.02-1.88a11.34 11.34 0 0 1-2.1-2.61c-.22-.38-.02-.58.17-.77.17-.17.38-.44.56-.66.19-.22.25-.38.38-.63.12-.25.06-.47-.03-.66-.1-.18-.84-2.02-1.15-2.77-.3-.72-.6-.62-.84-.63h-.71c-.25 0-.66.1-1 .47-.34.38-1.31 1.29-1.31 3.15 0 1.85 1.35 3.65 1.53 3.9.19.25 2.65 4.04 6.42 5.67.9.39 1.6.62 2.15.79.9.29 1.72.25 2.37.15.72-.11 2.17-.88 2.48-1.73.31-.84.31-1.57.22-1.72-.1-.16-.35-.25-.72-.44Z" fill="white"/>
+      </svg>
+    </span>
+  </a>
+{%- endif -%}

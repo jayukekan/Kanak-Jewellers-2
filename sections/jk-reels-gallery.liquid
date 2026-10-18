@@ -1,0 +1,357 @@
+{% comment %}
+  VLORA — Reels / Video gallery
+  Four portrait video cards on desktop, swipeable rail on mobile.
+{% endcomment %}
+
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign section_id = 'vlora-reels-' | append: section.id
+%}
+
+<section
+  id="{{ section_id }}"
+  class="vlora-reels"
+  aria-labelledby="{{ section_id }}-heading"
+  style="
+    --vr-bg: {{ section.settings.background_color }};
+    --vr-text: {{ section.settings.text_color }};
+    --vr-muted: {{ section.settings.subtext_color }};
+    --vr-accent: {{ section.settings.accent_color }};
+    --vr-radius: {{ section.settings.card_radius }}px;
+  "
+>
+  <div class="vlora-reels__inner page-width">
+    <header class="vlora-reels__header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="vlora-reels__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h2 id="{{ section_id }}-heading" class="vlora-reels__heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <div class="vlora-reels__subheading rte">{{ section.settings.subheading }}</div>
+      {% endif %}
+    </header>
+
+    <div class="vlora-reels__track" role="list">
+      {% for block in section.blocks %}
+        {% liquid
+          assign poster = block.settings.video.preview_image | default: block.settings.cover_image
+          assign video_id = block.settings.video.id | default: block.id
+        %}
+        <article class="vlora-reels__card" role="listitem" {{ block.shopify_attributes }}>
+          {% if block.settings.video != blank %}
+            {% if section.settings.autoplay_videos %}
+              <div class="vlora-reels__media vlora-reels__media--autoplay">
+                {{
+                  block.settings.video
+                  | video_tag:
+                    image_size: '900x',
+                    autoplay: true,
+                    loop: section.settings.loop_videos,
+                    controls: section.settings.show_video_controls,
+                    muted: true,
+                    playsinline: true
+                }}
+                {% if block.settings.title != blank %}
+                  <span class="vlora-reels__caption">{{ block.settings.title | escape }}</span>
+                {% endif %}
+              </div>
+            {% else %}
+              <deferred-media class="vlora-reels__media deferred-media" data-media-id="{{ video_id }}">
+                <button
+                  class="vlora-reels__poster deferred-media__poster"
+                  type="button"
+                  aria-label="Play {{ block.settings.title | escape }}"
+                >
+                  {% if poster != blank %}
+                    {{
+                      poster
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '240, 360, 480, 720, 900',
+                        sizes: '(max-width: 749px) 72vw, 25vw',
+                        class: 'vlora-reels__image',
+                        alt: block.settings.title
+                    }}
+                  {% else %}
+                    {{ 'lifestyle-1' | placeholder_svg_tag: 'vlora-reels__placeholder placeholder-svg' }}
+                  {% endif %}
+                  <span class="vlora-reels__play" aria-hidden="true">
+                    {{ 'icon-play.svg' | inline_asset_content }}
+                  </span>
+                  {% if block.settings.title != blank %}
+                    <span class="vlora-reels__caption">{{ block.settings.title | escape }}</span>
+                  {% endif %}
+                </button>
+                <template>
+                  {{
+                    block.settings.video
+                    | video_tag:
+                      image_size: '900x',
+                      autoplay: true,
+                      loop: section.settings.loop_videos,
+                      controls: true,
+                      muted: false,
+                      playsinline: true
+                  }}
+                </template>
+              </deferred-media>
+            {% endif %}
+          {% else %}
+            {% if block.settings.link != blank %}<a class="vloria-reels__poster" href="{{ block.settings.link }}">{% else %}<div class="vloria-reels__poster">{% endif %}
+              {% if poster != blank %}
+                {{
+                  poster
+                  | image_url: width: 900
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '240, 360, 480, 720, 900',
+                    sizes: '(max-width: 749px) 72vw, 25vw',
+                    class: 'vlora-reels__image',
+                    alt: block.settings.title
+                }}
+              {% else %}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'vlora-reels__placeholder placeholder-svg' }}
+              {% endif %}
+              <span class="vlora-reels__play" aria-hidden="true">{{ 'icon-play.svg' | inline_asset_content }}</span>
+              {% if block.settings.title != blank %}
+                <span class="vlora-reels__caption">{{ block.settings.title | escape }}</span>
+              {% endif %}
+            {% if block.settings.link != blank %}</a>{% else %}</div>{% endif %}
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #{{ section_id }} {
+    width: 100%;
+    background: var(--vr-bg);
+    color: var(--vr-text);
+  }
+
+  #{{ section_id }} * { box-sizing: border-box; }
+
+  #{{ section_id }} .vlora-reels__inner {
+    max-width: 1440px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #{{ section_id }} .vlora-reels__header {
+    max-width: 760px;
+    margin: 0 auto 26px;
+    text-align: center;
+  }
+
+  #{{ section_id }} .vlora-reels__eyebrow {
+    margin: 0 0 5px;
+    color: var(--vr-accent);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  #{{ section_id }} .vlora-reels__heading {
+    margin: 0;
+    color: inherit;
+    font-family: var(--font-heading-family);
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  #{{ section_id }} .vlora-reels__subheading {
+    margin-top: 8px;
+    color: var(--vr-muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  #{{ section_id }} .vlora-reels__subheading p { margin: 0; }
+
+  #{{ section_id }} .vlora-reels__track {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: {{ section.settings.card_gap }}px;
+  }
+
+  #{{ section_id }} .vlora-reels__card { min-width: 0; }
+
+  #{{ section_id }} .vlora-reels__media,
+  #{{ section_id }} .vloria-reels__poster {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    border: 0;
+    border-radius: var(--vr-radius);
+    background: #eadfd9;
+    color: #fff;
+    box-shadow: 0 4px 18px rgba(58, 39, 31, 0.08);
+    text-decoration: none;
+  }
+
+  #{{ section_id }} .vlora-reels__poster {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  #{{ section_id }} .vlora-reels__poster::after,
+  #{{ section_id }} .vloria-reels__poster::after {
+    content: '';
+    position: absolute;
+    inset: 48% 0 0;
+    background: linear-gradient(transparent, rgba(25, 15, 12, 0.66));
+    pointer-events: none;
+  }
+
+  #{{ section_id }} .vlora-reels__image,
+  #{{ section_id }} .vlora-reels__placeholder,
+  #{{ section_id }} .vlora-reels__media video,
+  #{{ section_id }} .vlora-reels__media model-viewer,
+  #{{ section_id }} .vlora-reels__media iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #{{ section_id }} .vlora-reels__media--autoplay::after { content: none; }
+  #{{ section_id }} .vlora-reels__media--autoplay .vlora-reels__caption { pointer-events: none; }
+
+  #{{ section_id }} .vlora-reels__play {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.78);
+    color: #222;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+    transform: translate(-50%, -50%);
+    transition: transform 180ms ease, background 180ms ease;
+  }
+
+  #{{ section_id }} .vlora-reels__play .icon { width: 18px; height: 18px; }
+  #{{ section_id }} .vlora-reels__poster:hover .vlora-reels__play,
+  #{{ section_id }} .vloria-reels__poster:hover .vlora-reels__play {
+    background: #fff;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+
+  #{{ section_id }} .vlora-reels__caption {
+    position: absolute;
+    z-index: 2;
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  }
+
+  @media screen and (max-width: 989px) {
+    #{{ section_id }} .vlora-reels__track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media screen and (max-width: 749px) {
+    #{{ section_id }} .vlora-reels__inner {
+      padding-top: {{ section.settings.mobile_padding_top }}px;
+      padding-bottom: {{ section.settings.mobile_padding_bottom }}px;
+    }
+
+    #{{ section_id }} .vlora-reels__header { margin-bottom: 20px; padding: 0 8px; }
+    #{{ section_id }} .vlora-reels__heading { font-size: {{ section.settings.mobile_heading_size }}px; }
+    #{{ section_id }} .vlora-reels__subheading { font-size: 12px; }
+    #{{ section_id }} .vlora-reels__track {
+      grid-template-columns: none;
+      grid-auto-columns: min(74vw, 280px);
+      grid-auto-flow: column;
+      gap: 12px;
+      margin-right: -1.5rem;
+      padding-right: 1.5rem;
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+      scroll-snap-type: inline mandatory;
+      scrollbar-width: none;
+    }
+    #{{ section_id }} .vlora-reels__track::-webkit-scrollbar { display: none; }
+    #{{ section_id }} .vlora-reels__card { scroll-snap-align: start; }
+    #{{ section_id }} .vlora-reels__play { width: 44px; height: 44px; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "VLORA Reels gallery",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Reels / Video Section" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Made by Parents. Loved by Little Ones." },
+    { "type": "richtext", "id": "subheading", "label": "Subheading", "default": "<p>See how families are turning everyday moments into forever memories.</p>" },
+    { "type": "checkbox", "id": "autoplay_videos", "label": "Autoplay videos", "info": "Videos autoplay muted because browsers do not allow autoplay with sound.", "default": false },
+    { "type": "checkbox", "id": "loop_videos", "label": "Loop videos", "default": false },
+    { "type": "checkbox", "id": "show_video_controls", "label": "Show controls on autoplay videos", "default": false },
+    { "type": "range", "id": "heading_size", "min": 22, "max": 52, "step": 1, "unit": "px", "label": "Desktop heading size", "default": 30 },
+    { "type": "range", "id": "mobile_heading_size", "min": 20, "max": 36, "step": 1, "unit": "px", "label": "Mobile heading size", "default": 25 },
+    { "type": "range", "id": "card_gap", "min": 8, "max": 32, "step": 2, "unit": "px", "label": "Card gap", "default": 16 },
+    { "type": "range", "id": "card_radius", "min": 0, "max": 30, "step": 2, "unit": "px", "label": "Card corner radius", "default": 14 },
+    { "type": "color", "id": "background_color", "label": "Background", "default": "#fffaf6" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#241d1a" },
+    { "type": "color", "id": "subtext_color", "label": "Subheading", "default": "#625b57" },
+    { "type": "color", "id": "accent_color", "label": "Accent", "default": "#a55f62" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Desktop top padding", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Desktop bottom padding", "default": 48 },
+    { "type": "range", "id": "mobile_padding_top", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Mobile top padding", "default": 36 },
+    { "type": "range", "id": "mobile_padding_bottom", "min": 0, "max": 80, "step": 4, "unit": "px", "label": "Mobile bottom padding", "default": 36 }
+  ],
+  "blocks": [
+    {
+      "type": "reel",
+      "name": "Reel",
+      "settings": [
+        { "type": "video", "id": "video", "label": "Shopify-hosted video" },
+        { "type": "image_picker", "id": "cover_image", "label": "Cover image" },
+        { "type": "text", "id": "title", "label": "Caption", "default": "Creating the Print" },
+        { "type": "url", "id": "link", "label": "Link (used when no video)" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "VLORA Reels gallery",
+      "blocks": [
+        { "type": "reel", "settings": { "title": "Unboxing the Kit" } },
+        { "type": "reel", "settings": { "title": "Creating the Print" } },
+        { "type": "reel", "settings": { "title": "The Final Result" } },
+        { "type": "reel", "settings": { "title": "Parent Reactions" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

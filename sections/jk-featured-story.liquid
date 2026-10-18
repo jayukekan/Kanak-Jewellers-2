@@ -1,0 +1,950 @@
+{% comment %}
+  VLORA — Featured Product Story
+  Desktop: Image left + content right
+  Mobile: App-style stacked card
+{% endcomment %}
+
+{% liquid
+  assign section_id = 'vlora-featured-story-' | append: section.id
+  assign featured_product = section.settings.product
+
+  if section.settings.button_link != blank
+    assign button_url = section.settings.button_link
+  elsif featured_product != blank
+    assign button_url = featured_product.url
+  else
+    assign button_url = routes.all_products_collection_url
+  endif
+%}
+
+<section
+  id="{{ section_id }}"
+  class="vlora-story"
+  aria-labelledby="{{ section_id }}-heading"
+
+  style="
+    --vs-bg: {{ section.settings.background_color }};
+    --vs-text: {{ section.settings.text_color }};
+    --vs-muted: {{ section.settings.subtext_color }};
+    --vs-accent: {{ section.settings.accent_color }};
+    --vs-button-bg: {{ section.settings.button_background }};
+    --vs-button-text: {{ section.settings.button_text_color }};
+  "
+>
+  <div class="vlora-story__page page-width">
+
+    <div class="vlora-story__card">
+
+      <!-- IMAGE -->
+      <div class="vlora-story__media">
+        {% if section.settings.image != blank %}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              widths: '400, 600, 800, 1000, 1200',
+              sizes: '(max-width: 749px) calc(100vw - 24px), 50vw',
+              class: 'vlora-story__image',
+              alt: section.settings.image.alt
+          }}
+
+        {% elsif featured_product != blank and featured_product.featured_image != blank %}
+          {{
+            featured_product.featured_image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              widths: '400, 600, 800, 1000, 1200',
+              sizes: '(max-width: 749px) calc(100vw - 24px), 50vw',
+              class: 'vlora-story__image',
+              alt: featured_product.title
+          }}
+
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'vlora-story__placeholder' }}
+        {% endif %}
+
+        {% if section.settings.show_image_badge and section.settings.image_badge != blank %}
+          <span class="vlora-story__image-badge">
+            {{ section.settings.image_badge }}
+          </span>
+        {% endif %}
+      </div>
+
+
+      <!-- CONTENT -->
+      <div class="vlora-story__content">
+
+        {% if section.settings.eyebrow != blank %}
+          <p class="vlora-story__eyebrow">
+            {{ section.settings.eyebrow }}
+          </p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <{{ section.settings.heading_tag }}
+            id="{{ section_id }}-heading"
+            class="vlora-story__heading"
+          >
+            {{ section.settings.heading }}
+          </{{ section.settings.heading_tag }}>
+        {% endif %}
+
+        {% if section.settings.description != blank %}
+          <div class="vlora-story__description">
+            {{ section.settings.description }}
+          </div>
+        {% endif %}
+
+
+        {% if section.blocks.size > 0 %}
+          <div class="vlora-story__benefits">
+
+            {% for block in section.blocks %}
+              <div
+                class="vlora-story__benefit"
+                {{ block.shopify_attributes }}
+              >
+                <span class="vlora-story__check" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path
+                      d="M4 10.3 8 14l8-9"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+
+                <span>
+                  {{ block.settings.text }}
+                </span>
+              </div>
+            {% endfor %}
+
+          </div>
+        {% endif %}
+
+
+        {% if section.settings.button_text != blank %}
+          <a
+            href="{{ button_url }}"
+            class="vlora-story__button"
+          >
+            <span>{{ section.settings.button_text }}</span>
+
+            {% if section.settings.show_arrow %}
+              <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path
+                  d="M3 9h11M10 5l4 4-4 4"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            {% endif %}
+          </a>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<style>
+  #{{ section_id }} {
+    width: 100%;
+    background: {{ section.settings.section_background }};
+  }
+
+  #{{ section_id }} * {
+    box-sizing: border-box;
+  }
+
+  #{{ section_id }} .vlora-story__page {
+    max-width: 1440px;
+    margin: 0 auto;
+
+    padding:
+      {{ section.settings.desktop_spacing_top }}px
+      20px
+      {{ section.settings.desktop_spacing_bottom }}px;
+  }
+
+  #{{ section_id }} .vlora-story__card {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: {{ section.settings.image_width }}% 1fr;
+
+    min-height: {{ section.settings.desktop_height }}px;
+
+    overflow: hidden;
+
+    background: var(--vs-bg);
+
+    border-radius: {{ section.settings.desktop_radius }}px;
+  }
+
+
+  /* =====================
+     IMAGE
+  ====================== */
+
+  #{{ section_id }} .vlora-story__media {
+    position: relative;
+    overflow: hidden;
+    min-width: 0;
+  }
+
+  #{{ section_id }} .vlora-story__image {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+  }
+
+  #{{ section_id }} .vlora-story__placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+
+    display: block;
+
+    background: #f3eee9;
+  }
+
+  #{{ section_id }} .vlora-story__image-badge {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+
+    padding: 7px 12px;
+
+    background: rgba(255,255,255,.92);
+    color: var(--vs-text);
+
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+
+    box-shadow: 0 4px 18px rgba(0,0,0,.05);
+  }
+
+
+  /* =====================
+     CONTENT
+  ====================== */
+
+  #{{ section_id }} .vlora-story__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    min-width: 0;
+
+    padding:
+      {{ section.settings.desktop_content_padding }}px;
+  }
+
+  #{{ section_id }} .vlora-story__eyebrow {
+    margin: 0 0 7px;
+
+    color: var(--vs-muted);
+
+    font-size: {{ section.settings.eyebrow_size }}px;
+    font-weight: 500;
+    line-height: 1.3;
+
+    letter-spacing: .02em;
+  }
+
+  #{{ section_id }} .vlora-story__heading {
+    max-width: 580px;
+
+    margin: 0;
+
+    color: var(--vs-text);
+
+    font-family: var(--font-heading-family);
+    font-size: {{ section.settings.desktop_heading_size }}px;
+    font-weight: 500;
+    line-height: 1.02;
+
+    letter-spacing: -.025em;
+  }
+
+  #{{ section_id }} .vlora-story__description {
+    max-width: 550px;
+
+    margin-top: 10px;
+
+    color: var(--vs-muted);
+
+    font-size: {{ section.settings.desktop_text_size }}px;
+    line-height: 1.5;
+  }
+
+  #{{ section_id }} .vlora-story__description p {
+    margin: 0;
+  }
+
+
+  /* =====================
+     BENEFITS
+  ====================== */
+
+  #{{ section_id }} .vlora-story__benefits {
+    width: 100%;
+
+    margin-top: 17px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #{{ section_id }} .vlora-story__benefit {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    color: var(--vs-text);
+
+    font-size: {{ section.settings.benefit_size }}px;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  #{{ section_id }} .vlora-story__check {
+    width: 17px;
+    height: 17px;
+    flex: 0 0 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--vs-accent);
+  }
+
+  #{{ section_id }} .vlora-story__check svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+
+  /* =====================
+     BUTTON
+  ====================== */
+
+  #{{ section_id }} .vlora-story__button {
+    min-height: 44px;
+
+    margin-top: 20px;
+    padding: 0 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    background: var(--vs-button-bg);
+    color: var(--vs-button-text);
+
+    border-radius: {{ section.settings.button_radius }}px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+
+    transition:
+      transform .2s ease,
+      box-shadow .2s ease,
+      opacity .2s ease;
+  }
+
+  #{{ section_id }} .vlora-story__button svg {
+    width: 16px;
+    height: 16px;
+
+    transition: transform .2s ease;
+  }
+
+  #{{ section_id }} .vlora-story__button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+      0 8px 20px
+      color-mix(in srgb, var(--vs-button-bg) 20%, transparent);
+  }
+
+  #{{ section_id }} .vlora-story__button:hover svg {
+    transform: translateX(3px);
+  }
+
+
+  /* =====================
+     TABLET
+  ====================== */
+
+  @media screen and (max-width: 990px) and (min-width: 750px) {
+
+    #{{ section_id }} .vlora-story__card {
+      grid-template-columns: 52% 48%;
+    }
+
+    #{{ section_id }} .vlora-story__content {
+      padding: 30px;
+    }
+
+    #{{ section_id }} .vlora-story__heading {
+      font-size: 32px;
+    }
+  }
+
+
+  /* =====================
+     MOBILE — APP STYLE
+  ====================== */
+
+  @media screen and (max-width: 749px) {
+
+    #{{ section_id }} .vlora-story__page {
+      padding:
+        {{ section.settings.mobile_spacing_top }}px
+        12px
+        {{ section.settings.mobile_spacing_bottom }}px;
+    }
+
+    #{{ section_id }} .vlora-story__card {
+      display: flex;
+      flex-direction: column;
+
+      min-height: 0;
+
+      border-radius: {{ section.settings.mobile_radius }}px;
+
+      box-shadow:
+        0 5px 18px rgba(40, 25, 15, .05);
+    }
+
+    #{{ section_id }} .vlora-story__media {
+      width: 100%;
+      aspect-ratio: {{ section.settings.mobile_image_ratio }};
+    }
+
+    #{{ section_id }} .vlora-story__image {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    #{{ section_id }} .vlora-story__image-badge {
+      left: 12px;
+      top: 12px;
+
+      padding: 6px 10px;
+
+      font-size: 10px;
+    }
+
+    #{{ section_id }} .vlora-story__content {
+      width: 100%;
+
+      padding:
+        {{ section.settings.mobile_content_padding }}px;
+    }
+
+    #{{ section_id }} .vlora-story__eyebrow {
+      margin-bottom: 5px;
+
+      font-size: {{ section.settings.mobile_eyebrow_size }}px;
+    }
+
+    #{{ section_id }} .vlora-story__heading {
+      max-width: 100%;
+
+      font-size: {{ section.settings.mobile_heading_size }}px;
+      line-height: 1.08;
+    }
+
+    #{{ section_id }} .vlora-story__description {
+      margin-top: 7px;
+
+      font-size: {{ section.settings.mobile_text_size }}px;
+      line-height: 1.45;
+    }
+
+    #{{ section_id }} .vlora-story__benefits {
+      margin-top: 13px;
+      gap: 7px;
+    }
+
+    #{{ section_id }} .vlora-story__benefit {
+      gap: 7px;
+
+      font-size: {{ section.settings.mobile_benefit_size }}px;
+    }
+
+    #{{ section_id }} .vlora-story__check {
+      width: 15px;
+      height: 15px;
+      flex-basis: 15px;
+    }
+
+    #{{ section_id }} .vlora-story__button {
+      width: 100%;
+      min-height: 46px;
+
+      margin-top: 17px;
+
+      border-radius: 10px;
+
+      font-size: 13px;
+    }
+  }
+</style>
+
+
+{% schema %}
+{
+  "name": "Jk Featured Story",
+  "tag": "section",
+  "class": "section-vlora-featured-story",
+
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Product"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Featured product"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Custom banner image"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Small text",
+      "default": "A whole year in one keepsake"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Watch Their Tiny Prints Grow Month by Month"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading HTML tag",
+      "default": "h2",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        },
+        {
+          "value": "p",
+          "label": "Paragraph"
+        }
+      ]
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Discover the Memory Book"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Custom button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Show arrow",
+      "default": true
+    },
+
+
+    {
+      "type": "header",
+      "content": "Image badge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image_badge",
+      "label": "Show image badge",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "image_badge",
+      "label": "Badge text",
+      "default": "Best Seller"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Outside background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Card background",
+      "default": "#FAEFE8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading color",
+      "default": "#252525"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Secondary text",
+      "default": "#5D5652"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Checkmark color",
+      "default": "#D75F68"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#CE666C"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#FFFFFF"
+    },
+
+
+    {
+      "type": "header",
+      "content": "Desktop layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 250,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "label": "Minimum height",
+      "default": 360
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 40,
+      "max": 65,
+      "step": 1,
+      "unit": "%",
+      "label": "Image width",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "desktop_content_padding",
+      "min": 20,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Content padding",
+      "default": 44
+    },
+    {
+      "type": "range",
+      "id": "desktop_heading_size",
+      "min": 26,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "eyebrow_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Small text size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "desktop_text_size",
+      "min": 11,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "benefit_size",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Benefit font size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "desktop_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Card radius",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Button radius",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "desktop_spacing_top",
+      "min": 0,
+      "max": 70,
+      "step": 2,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 22
+    },
+    {
+      "type": "range",
+      "id": "desktop_spacing_bottom",
+      "min": 0,
+      "max": 70,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 22
+    },
+
+
+    {
+      "type": "header",
+      "content": "Mobile layout"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_ratio",
+      "label": "Image ratio",
+      "default": "16 / 10",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Square"
+        },
+        {
+          "value": "4 / 3",
+          "label": "4:3"
+        },
+        {
+          "value": "16 / 10",
+          "label": "Wide"
+        },
+        {
+          "value": "16 / 9",
+          "label": "16:9"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "mobile_content_padding",
+      "min": 12,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Content padding",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "min": 22,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size",
+      "default": 27
+    },
+    {
+      "type": "range",
+      "id": "mobile_eyebrow_size",
+      "min": 9,
+      "max": 14,
+      "step": 1,
+      "unit": "px",
+      "label": "Small text size",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "mobile_text_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_benefit_size",
+      "min": 10,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "label": "Benefits size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_radius",
+      "min": 8,
+      "max": 28,
+      "step": 2,
+      "unit": "px",
+      "label": "Card radius",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_spacing_top",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Top spacing",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_spacing_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 2,
+      "unit": "px",
+      "label": "Bottom spacing",
+      "default": 12
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Benefit",
+          "default": "12 months of memories"
+        }
+      ]
+    }
+  ],
+
+  "max_blocks": 5,
+
+  "presets": [
+    {
+      "name": "Jk Featured Product Story",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "12 months of memories"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "Mess-free printing"
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "text": "Photos + milestones together"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

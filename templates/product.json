@@ -1,0 +1,547 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "judge_me_reviews_preview_badge_XkiYaF": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "custom_liquid_Vmc6jw": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<style>\n  .vlora-product-highlights {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 8px;\n    margin: 12px 0 16px;\n  }\n\n  .vlora-highlight {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    padding: 8px 10px;\n    border-radius: 6px;\n    font-size: 11px;\n    line-height: 1.2;\n    font-weight: 500;\n    letter-spacing: 0.2px;\n    white-space: nowrap;\n  }\n\n  .vlora-highlight--purple {\n    background: #f1dcfa;\n    color: #7b3da0;\n  }\n\n  .vlora-highlight--yellow {\n    background: #fff0c4;\n    color: #80620b;\n  }\n\n  .vlora-highlight--blue {\n    background: #dcecff;\n    color: #2866a8;\n  }\n\n  .vlora-highlight--green {\n    background: #dff3e9;\n    color: #39805d;\n  }\n\n  @media screen and (max-width: 749px) {\n    .vlora-product-highlights {\n      gap: 6px;\n      margin: 10px 0 14px;\n    }\n\n    .vlora-highlight {\n      padding: 7px 10px;\n      font-size: 11px;\n    }\n  }\n</style>\n\n<div class=\"vlora-product-highlights\" aria-label=\"Product highlights\">\n\n  <span class=\"vlora-highlight vlora-highlight--purple\">\n    First Year Keepsake\n  </span>\n\n  <span class=\"vlora-highlight vlora-highlight--yellow\">\n    Hand &amp; Footprint Memories\n  </span>\n\n  <span class=\"vlora-highlight vlora-highlight--blue\">\n    Monthly Baby Memories\n  </span>\n\n  <span class=\"vlora-highlight vlora-highlight--green\">\n    Perfect Newborn Gift\n  </span>\n\n</div>"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "custom_liquid_JHJVHx": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% if product.metafields.custom.bullets != blank %}\n  <div class=\"vlora-product-bullets\">\n    {{ product.metafields.custom.bullets | metafield_tag }}\n  </div>\n\n  <style>\n    .vlora-product-bullets {\n      margin: 16px 0 10px;\n      color: #2b211e;\n    }\n\n    .vlora-product-bullets ul {\n      list-style: none;\n      padding: 0;\n      margin: 0;\n      display: flex;\n      flex-direction: column;\n      gap: 8px;\n    }\n\n    .vlora-product-bullets li {\n      position: relative;\n      padding-left: 28px;\n      margin: 0;\n      font-size: 15px;\n      font-weight: 700;\n      line-height: 1.4;\n    }\n\n    .vlora-product-bullets li::before {\n      content: \"✓\";\n      position: absolute;\n      left: 0;\n      top: 1px;\n\n      width: 19px;\n      height: 19px;\n\n      display: flex;\n      align-items: center;\n      justify-content: center;\n\n      background: #ef7f89;\n      color: #fff;\n\n      border-radius: 50%;\n\n      font-size: 12px;\n      font-weight: 700;\n    }\n\n    .vlora-product-bullets p {\n      margin: 0 0 8px;\nfont-weight: 600;\n    }\n\n    @media screen and (max-width: 749px) {\n      .vlora-product-bullets li {\n        font-size: 14px;\n        padding-left: 26px;\n      }\n\n      .vlora-product-bullets li::before {\n        width: 18px;\n        height: 18px;\n        font-size: 11px;\n      }\n    }\n  </style>\n{% endif %}"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "cards",
+            "swatch_shape": "none",
+            "badge_1": "Starter",
+            "subtext_1": "One pack",
+            "badge_2": "Most popular",
+            "subtext_2": "Two packs",
+            "badge_3": "Deluxe",
+            "subtext_3": "Three packs"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "trust_bar": {
+          "type": "vlora_trust_bar",
+          "disabled": true,
+          "settings": {
+            "trust_1_title": "Baby-Friendly Materials",
+            "trust_1_text": "",
+            "trust_2_title": "Easy DIY Keepsakes",
+            "trust_2_text": "",
+            "trust_3_title": "Thoughtful Gifting",
+            "trust_3_text": "",
+            "trust_4_title": "Memories Made to Last",
+            "trust_4_text": ""
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "collapsible_tab_EMTrxi": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "HOW TO USE",
+            "icon": "none",
+            "content": "{{ product.metafields.custom.how_to_use | metafield_tag }}",
+            "page": ""
+          }
+        },
+        "highlights": {
+          "type": "vlora_highlights",
+          "settings": {
+            "highlight_1": "Made for tiny hands and feet",
+            "highlight_2": "Create a keepsake in minutes",
+            "highlight_3": "Safe, mess-free and easy to use"
+          }
+        },
+        "reelfy_videos_reelfy_product_MHjPzw": {
+          "type": "shopify://apps/reelfy-videos/blocks/reelfy-product/4022ffb0-05c3-4ef3-a409-6df51f4b1b3f",
+          "settings": {
+            "title": "",
+            "heading_size": "1",
+            "heading_align": "left",
+            "heading_color": "",
+            "custom_class": ""
+          }
+        },
+        "custom_liquid_KywwLz": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"vlora-usp-image\">\n  <img\n    src=\"https://cdn.shopify.com/s/files/1/0728/7167/3930/files/456456_2_74aa4b63-0c87-497a-bb43-dfcc6700444d.png?v=1789583852\"\n    alt=\"Vlora product benefits\"\n    loading=\"lazy\"\n  >\n</div>\n\n<style>\n  .vlora-usp-image {\n    margin: 12px 0;\n    text-align: center;\n  }\n\n  .vlora-usp-image img {\n    width: 82%;\n    max-width: 520px;\n    height: auto;\n    display: inline-block;\n    border-radius: 8px;\n  }\n\n  @media screen and (max-width: 749px) {\n    .vlora-usp-image {\n      margin: 10px 0;\n    }\n\n    .vlora-usp-image img {\n      width: 90%;\n      max-width: 100%;\n    }\n  }\n</style>"
+          }
+        },
+        "custom_liquid_CFynxR": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"vlora-review-slider\" id=\"vlora-review-slider-{{ section.id | default: 'custom' }}\">\n  <div class=\"vlora-review-card\">\n\n    <button class=\"vlora-review-arrow vlora-review-prev\" type=\"button\" aria-label=\"Previous review\">\n      &#8249;\n    </button>\n\n    <div class=\"vlora-review-content\">\n\n      <div class=\"vlora-review-top\">\n        <div class=\"vlora-review-stars\">★★★★★</div>\n        <span class=\"vlora-review-badge\">CUSTOMER REVIEW</span>\n      </div>\n\n      <div class=\"vlora-review-slides\">\n\n        <div class=\"vlora-review-slide is-active\">\n          <p class=\"vlora-review-text\">\n            Absolutely loved this product! The quality feels really good and it was very easy to use.\n          </p>\n\n          <div class=\"vlora-review-author\">\n            <div class=\"vlora-review-avatar\">P</div>\n            <div>\n              <div class=\"vlora-review-name\">Priya Sharma</div>\n              <div class=\"vlora-review-meta\">Verified Customer</div>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"vlora-review-slide\">\n          <p class=\"vlora-review-text\">\n            Really happy with my purchase. The product looks exactly as expected and the overall experience was great.\n          </p>\n\n          <div class=\"vlora-review-author\">\n            <div class=\"vlora-review-avatar\">N</div>\n            <div>\n              <div class=\"vlora-review-name\">Neha Verma</div>\n              <div class=\"vlora-review-meta\">Verified Customer</div>\n            </div>\n          </div>\n        </div>\n\n        <div class=\"vlora-review-slide\">\n          <p class=\"vlora-review-text\">\n            Very useful and nicely made. Packaging was neat and the product quality impressed me.\n          </p>\n\n          <div class=\"vlora-review-author\">\n            <div class=\"vlora-review-avatar\">R</div>\n            <div>\n              <div class=\"vlora-review-name\">Riya Mehta</div>\n              <div class=\"vlora-review-meta\">Verified Customer</div>\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n\n    <button class=\"vlora-review-arrow vlora-review-next\" type=\"button\" aria-label=\"Next review\">\n      &#8250;\n    </button>\n\n  </div>\n</div>\n\n<style>\n.vlora-review-slider {\n  width: 100%;\n  margin: 18px 0;\n  font-family: inherit;\n}\n\n.vlora-review-card {\n  position: relative;\n  display: flex;\n  align-items: center;\n  gap: 14px;\n  background: #fcfdf8;\n  border: 1px solid #dce9c8;\n  border-radius: 22px;\n  padding: 22px 62px;\n  overflow: hidden;\n}\n\n.vlora-review-content {\n  width: 100%;\n}\n\n.vlora-review-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 12px;\n  margin-bottom: 10px;\n}\n\n.vlora-review-stars {\n  color: #ffad00;\n  font-size: 17px;\n  letter-spacing: 2px;\n  line-height: 1;\n}\n\n.vlora-review-badge {\n  background: #edf5dc;\n  color: #72992d;\n  font-size: 10px;\n  font-weight: 700;\n  padding: 6px 12px;\n  border-radius: 50px;\n  white-space: nowrap;\n}\n\n.vlora-review-slide {\n  display: none;\n}\n\n.vlora-review-slide.is-active {\n  display: block;\n  animation: vloraReviewFade .3s ease;\n}\n\n@keyframes vloraReviewFade {\n  from {\n    opacity: 0;\n    transform: translateY(3px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.vlora-review-text {\n  margin: 0 0 13px;\n  color: #404040;\n  font-size: 14px;\n  line-height: 1.55;\n  font-weight: 500;\n}\n\n.vlora-review-author {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.vlora-review-avatar {\n  width: 32px;\n  height: 32px;\n  min-width: 32px;\n  border-radius: 50%;\n  background: #7bae24;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 13px;\n  font-weight: 700;\n}\n\n.vlora-review-name {\n  color: #5e8520;\n  font-size: 13px;\n  line-height: 1.2;\n  font-weight: 700;\n}\n\n.vlora-review-meta {\n  color: #9a9a9a;\n  font-size: 11px;\n  line-height: 1.3;\n  margin-top: 2px;\n}\n\n.vlora-review-arrow {\n  position: absolute;\n  top: 50%;\n  transform: translateY(-50%);\n  width: 36px;\n  height: 36px;\n  border-radius: 50%;\n  border: 1px solid #e1e7d7;\n  background: #fff;\n  color: #333;\n  font-size: 26px;\n  line-height: 1;\n  cursor: pointer;\n  z-index: 3;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  box-shadow: 0 5px 18px rgba(0,0,0,.06);\n}\n\n.vlora-review-prev {\n  left: 17px;\n}\n\n.vlora-review-next {\n  right: 17px;\n}\n\n.vlora-review-arrow:hover {\n  background: #f6f9ef;\n}\n\n@media screen and (max-width: 749px) {\n\n  .vlora-review-card {\n    border-radius: 18px;\n    padding: 18px 45px;\n  }\n\n  .vlora-review-arrow {\n    width: 30px;\n    height: 30px;\n    font-size: 22px;\n  }\n\n  .vlora-review-prev {\n    left: 8px;\n  }\n\n  .vlora-review-next {\n    right: 8px;\n  }\n\n  .vlora-review-text {\n    font-size: 13px;\n    line-height: 1.5;\n  }\n\n  .vlora-review-stars {\n    font-size: 14px;\n    letter-spacing: 1px;\n  }\n\n  .vlora-review-badge {\n    font-size: 8px;\n    padding: 5px 8px;\n  }\n\n  .vlora-review-name {\n    font-size: 12px;\n  }\n\n  .vlora-review-meta {\n    font-size: 10px;\n  }\n\n}\n</style>\n\n<script>\n(function() {\n  function initVloraReviewSlider() {\n\n    document.querySelectorAll('.vlora-review-slider').forEach(function(slider) {\n\n      if (slider.dataset.initialized === 'true') return;\n      slider.dataset.initialized = 'true';\n\n      const slides = slider.querySelectorAll('.vlora-review-slide');\n      const prev = slider.querySelector('.vlora-review-prev');\n      const next = slider.querySelector('.vlora-review-next');\n\n      if (!slides.length) return;\n\n      let current = 0;\n\n      function showSlide(index) {\n        slides.forEach(function(slide) {\n          slide.classList.remove('is-active');\n        });\n\n        slides[index].classList.add('is-active');\n      }\n\n      next.addEventListener('click', function() {\n        current = (current + 1) % slides.length;\n        showSlide(current);\n      });\n\n      prev.addEventListener('click', function() {\n        current = (current - 1 + slides.length) % slides.length;\n        showSlide(current);\n      });\n\n    });\n  }\n\n  document.addEventListener('DOMContentLoaded', initVloraReviewSlider);\n\n  if (document.readyState !== 'loading') {\n    initVloraReviewSlider();\n  }\n})();\n</script>"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "judge_me_reviews_preview_badge_XkiYaF",
+        "rating",
+        "title",
+        "custom_liquid_Vmc6jw",
+        "price",
+        "custom_liquid_JHJVHx",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "trust_bar",
+        "description",
+        "collapsible_tab_EMTrxi",
+        "highlights",
+        "reelfy_videos_reelfy_product_MHjPzw",
+        "custom_liquid_KywwLz",
+        "custom_liquid_CFynxR",
+        "share"
+      ],
+      "custom_css": [
+        "s.price-item.price-item--regular {font-size: 18px !important;}"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 16,
+        "padding_bottom": 12
+      }
+    },
+    "running-text": {
+      "type": "jk-running-text",
+      "blocks": {
+        "text-1": {
+          "type": "text",
+          "settings": {
+            "text": "Round Mould"
+          }
+        },
+        "text-2": {
+          "type": "text",
+          "settings": {
+            "text": "Paint Set"
+          }
+        },
+        "text-3": {
+          "type": "text",
+          "settings": {
+            "text": "Tinted Paint & Brush Set"
+          }
+        },
+        "text-4": {
+          "type": "text",
+          "settings": {
+            "text": "Mini Ribbon & Hook"
+          }
+        },
+        "text-5": {
+          "type": "text",
+          "settings": {
+            "text": "Full Guide"
+          }
+        },
+        "text-6": {
+          "type": "text",
+          "settings": {
+            "text": "Air-Dry Clay"
+          }
+        }
+      },
+      "block_order": [
+        "text-1",
+        "text-2",
+        "text-3",
+        "text-4",
+        "text-5",
+        "text-6"
+      ],
+      "settings": {
+        "background_color": "#d85e67",
+        "text_color": "#ffffff",
+        "speed": 28,
+        "direction": "left",
+        "pause_on_hover": true,
+        "italic": true,
+        "font_weight": "600",
+        "accessibility_label": "What's included in the kit",
+        "padding_top": 14,
+        "padding_bottom": 14
+      }
+    },
+    "frequently-bought": {
+      "type": "jk-frequently-bought",
+      "disabled": true,
+      "settings": {
+        "color_scheme": "scheme-1",
+        "heading": "Frequently Bought Together",
+        "tag": "Most Loved Combo",
+        "button_label": "Add bundle to cart",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "product-story": {
+      "type": "jk-product-story",
+      "blocks": {
+        "benefit-1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "heart",
+            "title": "Made with love",
+            "text": "A personal memory created by you."
+          }
+        },
+        "benefit-2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield",
+            "title": "Baby-safe materials",
+            "text": "Gentle, easy to use and thoughtfully selected."
+          }
+        },
+        "benefit-3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Beautifully giftable",
+            "text": "A heartfelt gift for parents and growing families."
+          }
+        }
+      },
+      "block_order": [
+        "benefit-1",
+        "benefit-2",
+        "benefit-3"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "image_position": "left",
+        "image_ratio": 105,
+        "eyebrow": "Made for meaningful moments",
+        "heading": "A keepsake your family will treasure forever",
+        "text": "<p>Turn their tiniest details into a beautiful memory. Our easy-to-use kit helps you create a personal keepsake at home—without the mess or stress.</p>",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "product-process": {
+      "type": "jk-product-process",
+      "blocks": {
+        "step-1": {
+          "type": "step",
+          "settings": {
+            "icon": "🟫",
+            "step_label": "Step one",
+            "title": "Shape the clay",
+            "time": "2 minutes",
+            "description": "Knead the clay until soft, then press it flat and shape a clean disc."
+          }
+        },
+        "step-2": {
+          "type": "step",
+          "settings": {
+            "icon": "🐾",
+            "step_label": "Step two",
+            "title": "Press the print",
+            "time": "1 minute",
+            "description": "Gently press your baby's foot or hand into the clay. Re-mould and try again if needed."
+          }
+        },
+        "step-3": {
+          "type": "step",
+          "settings": {
+            "icon": "🌙",
+            "step_label": "Step three",
+            "title": "Let it dry",
+            "time": "24–48 hours",
+            "description": "Leave it somewhere flat and dry. No oven or kiln needed—it hardens naturally."
+          }
+        },
+        "step-4": {
+          "type": "step",
+          "settings": {
+            "icon": "✨",
+            "step_label": "Step four",
+            "title": "Paint and display",
+            "time": "Your moment",
+            "description": "Add the finishing touches, attach the ribbon and display your forever memory."
+          }
+        }
+      },
+      "block_order": [
+        "step-1",
+        "step-2",
+        "step-3",
+        "step-4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "The process",
+        "heading": "Four steps. Ten minutes. Forever.",
+        "subheading": "No pottery skills. No special tools. Just you and your baby.",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "product-showcase": {
+      "type": "jk-product-showcase",
+      "blocks": {
+        "panel-1": {
+          "type": "panel",
+          "settings": {
+            "label": "Starter favourite",
+            "title": "The Classic Print",
+            "text": "Pack 1 and Pack 2"
+          }
+        },
+        "panel-2": {
+          "type": "panel",
+          "settings": {
+            "label": "Deluxe kit",
+            "title": "The Deluxe Print",
+            "text": "Pack 3 only"
+          }
+        },
+        "stat-1": {
+          "type": "stat",
+          "settings": {
+            "value": "12K+",
+            "label": "Happy customers"
+          }
+        },
+        "stat-2": {
+          "type": "stat",
+          "settings": {
+            "value": "4.7",
+            "label": "Average rating out of 5"
+          }
+        },
+        "stat-3": {
+          "type": "stat",
+          "settings": {
+            "value": "100%",
+            "label": "Non-toxic clay"
+          }
+        },
+        "stat-4": {
+          "type": "stat",
+          "settings": {
+            "value": "1200+",
+            "label": "Kits shipped this month"
+          }
+        }
+      },
+      "block_order": [
+        "panel-1",
+        "panel-2",
+        "stat-1",
+        "stat-2",
+        "stat-3",
+        "stat-4"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "panel_height": 60,
+        "corner_radius": 0,
+        "columns_desktop": "2",
+        "stats_columns": "4",
+        "stats_background": "#2e2425",
+        "stats_text_color": "#f9e7e9",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "heading": "Disclosures",
+        "heading_size": "h2",
+        "open_by_default": false,
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "<strong>You may also like</strong>",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "product-faq": {
+      "type": "jk-product-faq",
+      "blocks": {
+        "faq-1": {
+          "type": "faq",
+          "settings": {
+            "question": "{{ product.metafields.custom.faq1.value }}",
+            "answer": "{{ product.metafields.custom.ans1 | metafield_tag }}",
+            "open_by_default": false
+          }
+        },
+        "faq-2": {
+          "type": "faq",
+          "settings": {
+            "question": "{{ product.metafields.custom.faq3.value }}",
+            "answer": "{{ product.metafields.custom.ans3 | metafield_tag }}",
+            "open_by_default": false
+          }
+        },
+        "faq-3": {
+          "type": "faq",
+          "settings": {
+            "question": "{{ product.metafields.custom.faq2.value }}",
+            "answer": "{{ product.metafields.custom.ans2 | metafield_tag }}",
+            "open_by_default": false
+          }
+        },
+        "faq-4": {
+          "type": "faq",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Delivery timing is shown at checkout and can vary by location.</p>",
+            "open_by_default": false
+          }
+        },
+        "faq-5": {
+          "type": "faq",
+          "settings": {
+            "question": "{{ product.metafields.custom.faq5.value }}",
+            "answer": "<p>{{ product.metafields.custom.faq5.value }}</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4",
+        "faq-5"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "eyebrow": "FAQ",
+        "heading": "Good to know.",
+        "content_width": 75,
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
+    },
+    "17891555281493f970": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_WjGKDm": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "sample_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_WjGKDm"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "running-text",
+    "frequently-bought",
+    "product-story",
+    "product-process",
+    "product-showcase",
+    "disclosures",
+    "related-products",
+    "product-faq",
+    "17891555281493f970"
+  ]
+}

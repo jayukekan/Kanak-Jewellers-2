@@ -1,0 +1,603 @@
+{% comment %}
+  VLORA — Trust / USP Points
+  Desktop: 5 equal columns
+  Mobile: swipeable app-style horizontal cards
+{% endcomment %}
+
+{% liquid
+  assign section_id = 'vlora-trust-' | append: section.id
+%}
+
+<section
+  id="{{ section_id }}"
+  class="vlora-trust"
+  aria-label="Why shop with Vlora"
+  style="
+    --trust-bg: {{ section.settings.background_color }};
+    --trust-text: {{ section.settings.text_color }};
+    --trust-muted: {{ section.settings.subtext_color }};
+    --trust-icon: {{ section.settings.icon_color }};
+    --trust-icon-bg: {{ section.settings.icon_background }};
+    --trust-border: {{ section.settings.border_color }};
+  "
+>
+  <div class="vlora-trust__container page-width">
+    <div class="vlora-trust__track">
+      {% for block in section.blocks %}
+        {% if block.settings.link != blank %}
+          <a
+            href="{{ block.settings.link }}"
+            class="vlora-trust__item"
+            {{ block.shopify_attributes }}
+          >
+        {% else %}
+          <div
+            class="vlora-trust__item"
+            {{ block.shopify_attributes }}
+          >
+        {% endif %}
+
+          <span class="vlora-trust__icon" aria-hidden="true">
+            {% case block.settings.icon %}
+
+              {% when 'truck' %}
+                <svg viewBox="0 0 32 32" fill="none">
+                  <path d="M4 8h15v13H4V8Z" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M19 13h5l4 5v3h-9v-8Z" stroke="currentColor" stroke-width="1.7"/>
+                  <circle cx="9" cy="23.5" r="2.5" stroke="currentColor" stroke-width="1.7"/>
+                  <circle cx="24" cy="23.5" r="2.5" stroke="currentColor" stroke-width="1.7"/>
+                  <path d="M4 12h8" stroke="currentColor" stroke-width="1.7"/>
+                </svg>
+
+              {% when 'shield' %}
+                <svg viewBox="0 0 32 32" fill="none">
+                  <path d="M16 3.5 26 7v7.5c0 6.3-4 10.6-10 13.5-6-2.9-10-7.2-10-13.5V7l10-3.5Z"
+                    stroke="currentColor"
+                    stroke-width="1.7"/>
+                  <path d="m11.5 15.5 3 3 6-7"
+                    stroke="currentColor"
+                    stroke-width="1.8"/>
+                </svg>
+
+              {% when 'heart' %}
+                <svg viewBox="0 0 32 32" fill="none">
+                  <path d="M16 27S5 20.5 5 12.5C5 8.7 7.8 6 11.2 6c2.2 0 3.9 1.1 4.8 2.7C16.9 7.1 18.6 6 20.8 6 24.2 6 27 8.7 27 12.5 27 20.5 16 27 16 27Z"
+                    stroke="currentColor"
+                    stroke-width="1.7"/>
+                </svg>
+
+              {% when 'gift' %}
+                <svg viewBox="0 0 32 32" fill="none">
+                  <rect x="4" y="12" width="24" height="16" rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.7"/>
+                  <path d="M16 12v16M4 17h24"
+                    stroke="currentColor"
+                    stroke-width="1.7"/>
+                  <path d="M16 12h-5c-2.2 0-4-1.6-4-3.5S8.8 5 11 5c3.5 0 5 7 5 7Z"
+                    stroke="currentColor"
+                    stroke-width="1.7"/>
+                  <path d="M16 12h5c2.2 0 4-1.6 4-3.5S23.2 5 21 5c-3.5 0-5 7-5 7Z"
+                    stroke="currentColor"
+                    stroke-width="1.7"/>
+                </svg>
+
+              {% when 'leaf' %}
+                <svg viewBox="0 0 32 32" fill="none">
+                  <path d="M26.5 5.5C15 5.5 7 11.5 7 20c0 4 2.8 6.5 6.4 6.5 8.1 0 13.1-8.5 13.1-21Z"
+                    stroke="currentColor"
+                    stroke-width="1.7"/>
+                  <path d="M7 27c2.5-7.5 7.3-12.2 14.5-15.5"
+                    stroke="currentColor"
+                    stroke-width="1.7"/>
+                </svg>
+
+              {% when 'star' %}
+                <svg viewBox="0 0 32 32" fill="none">
+                  <path d="m16 4 3.5 7.1 7.8 1.1-5.6 5.5 1.3 7.8-7-3.7-7 3.7 1.3-7.8-5.6-5.5 7.8-1.1L16 4Z"
+                    stroke="currentColor"
+                    stroke-width="1.7"/>
+                </svg>
+
+            {% endcase %}
+          </span>
+
+          <span class="vlora-trust__content">
+            {% if block.settings.heading != blank %}
+              <span class="vlora-trust__heading">
+                {{ block.settings.heading }}
+              </span>
+            {% endif %}
+
+            {% if block.settings.text != blank %}
+              <span class="vlora-trust__text">
+                {{ block.settings.text }}
+              </span>
+            {% endif %}
+          </span>
+
+        {% if block.settings.link != blank %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  #{{ section_id }} {
+    width: 100%;
+    background: var(--trust-bg);
+    color: var(--trust-text);
+    border-top: 1px solid var(--trust-border);
+    border-bottom: 1px solid var(--trust-border);
+  }
+
+  #{{ section_id }} * {
+    box-sizing: border-box;
+  }
+
+  #{{ section_id }} .vlora-trust__container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  #{{ section_id }} .vlora-trust__track {
+    display: grid;
+    grid-template-columns: repeat({{ section.blocks.size }}, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  #{{ section_id }} .vlora-trust__item {
+    min-width: 0;
+    min-height: {{ section.settings.desktop_height }}px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 14px 18px;
+
+    color: inherit;
+    text-decoration: none;
+
+    position: relative;
+  }
+
+  #{{ section_id }} .vlora-trust__item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 26%;
+    width: 1px;
+    height: 48%;
+    background: var(--trust-border);
+  }
+
+  #{{ section_id }} .vlora-trust__icon {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+
+    flex: 0 0 {{ section.settings.icon_size }}px;
+
+    border-radius: 50%;
+
+    background: var(--trust-icon-bg);
+    color: var(--trust-icon);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px;
+  }
+
+  #{{ section_id }} .vlora-trust__icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  #{{ section_id }} .vlora-trust__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+
+    line-height: 1.15;
+  }
+
+  #{{ section_id }} .vlora-trust__heading {
+    display: block;
+
+    font-size: {{ section.settings.heading_size }}px;
+    font-weight: 600;
+
+    color: var(--trust-text);
+  }
+
+  #{{ section_id }} .vlora-trust__text {
+    display: block;
+
+    font-size: {{ section.settings.text_size }}px;
+    font-weight: 400;
+
+    color: var(--trust-muted);
+  }
+
+  #{{ section_id }} a.vlora-trust__item {
+    transition:
+      opacity .2s ease,
+      transform .2s ease;
+  }
+
+  #{{ section_id }} a.vlora-trust__item:hover {
+    opacity: .78;
+  }
+
+  /*
+    TABLET
+  */
+  @media screen and (max-width: 990px) and (min-width: 750px) {
+    #{{ section_id }} .vlora-trust__container {
+      padding: 0 15px;
+    }
+
+    #{{ section_id }} .vlora-trust__item {
+      gap: 7px;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    #{{ section_id }} .vlora-trust__icon {
+      width: 30px;
+      height: 30px;
+      flex-basis: 30px;
+      padding: 6px;
+    }
+
+    #{{ section_id }} .vlora-trust__heading {
+      font-size: 11px;
+    }
+
+    #{{ section_id }} .vlora-trust__text {
+      font-size: 9px;
+    }
+  }
+
+  /*
+    MOBILE — App-style horizontal swipe
+  */
+  @media screen and (max-width: 749px) {
+
+    #{{ section_id }} .vlora-trust__container {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #{{ section_id }} .vlora-trust__track {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      gap: 0;
+
+      padding: 0 8px;
+
+      scroll-snap-type: x proximity;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+
+      scrollbar-width: none;
+    }
+
+    #{{ section_id }} .vlora-trust__track::-webkit-scrollbar {
+      display: none;
+    }
+
+    #{{ section_id }} .vlora-trust__item {
+      flex: 0 0 38%;
+      min-width: 128px;
+
+      min-height: {{ section.settings.mobile_height }}px;
+
+      padding: 12px 9px;
+
+      gap: 7px;
+
+      justify-content: flex-start;
+
+      scroll-snap-align: start;
+    }
+
+    #{{ section_id }} .vlora-trust__item::after {
+      display: block;
+      top: 25%;
+      height: 50%;
+    }
+
+    #{{ section_id }} .vlora-trust__icon {
+      width: {{ section.settings.mobile_icon_size }}px;
+      height: {{ section.settings.mobile_icon_size }}px;
+      flex-basis: {{ section.settings.mobile_icon_size }}px;
+
+      padding: 5px;
+    }
+
+    #{{ section_id }} .vlora-trust__content {
+      gap: 1px;
+    }
+
+    #{{ section_id }} .vlora-trust__heading {
+      font-size: {{ section.settings.mobile_heading_size }}px;
+      line-height: 1.1;
+    }
+
+    #{{ section_id }} .vlora-trust__text {
+      font-size: {{ section.settings.mobile_text_size }}px;
+      line-height: 1.1;
+    }
+  }
+
+  /*
+    Small phones
+  */
+  @media screen and (max-width: 390px) {
+    #{{ section_id }} .vlora-trust__item {
+      flex-basis: 43%;
+      min-width: 125px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Jk Trust Points",
+  "tag": "section",
+  "class": "section-vlora-trust",
+  "max_blocks": 6,
+
+  "settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FFFDFB"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Heading",
+      "default": "#242424"
+    },
+    {
+      "type": "color",
+      "id": "subtext_color",
+      "label": "Secondary text",
+      "default": "#565656"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#503F3A"
+    },
+    {
+      "type": "color",
+      "id": "icon_background",
+      "label": "Icon background",
+      "default": "#F8EAE5"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Borders / separators",
+      "default": "#EEE5E1"
+    },
+
+    {
+      "type": "header",
+      "content": "Desktop"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 60,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Section height",
+      "default": 76
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 28,
+      "max": 52,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 38
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "min": 8,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "label": "Text font size",
+      "default": 10
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile"
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 60,
+      "max": 110,
+      "step": 2,
+      "unit": "px",
+      "label": "Item height",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_size",
+      "min": 24,
+      "max": 42,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon size",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "mobile_heading_size",
+      "min": 9,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading font size",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_text_size",
+      "min": 8,
+      "max": 13,
+      "step": 1,
+      "unit": "px",
+      "label": "Text font size",
+      "default": 9
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "trust_point",
+      "name": "Trust point",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "truck",
+          "options": [
+            {
+              "value": "truck",
+              "label": "Shipping"
+            },
+            {
+              "value": "shield",
+              "label": "Safety"
+            },
+            {
+              "value": "heart",
+              "label": "Families"
+            },
+            {
+              "value": "gift",
+              "label": "Gifting"
+            },
+            {
+              "value": "leaf",
+              "label": "Kinder tomorrow"
+            },
+            {
+              "value": "star",
+              "label": "Star"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Free Shipping"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Secondary text",
+          "default": "on orders above ₹999"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Optional link"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Jk Trust Points",
+      "blocks": [
+        {
+          "type": "trust_point",
+          "settings": {
+            "icon": "truck",
+            "heading": "Free Shipping",
+            "text": "on orders above ₹999"
+          }
+        },
+        {
+          "type": "trust_point",
+          "settings": {
+            "icon": "shield",
+            "heading": "Safe & Baby Friendly",
+            "text": "Materials"
+          }
+        },
+        {
+          "type": "trust_point",
+          "settings": {
+            "icon": "heart",
+            "heading": "Loved by",
+            "text": "10,000+ Families"
+          }
+        },
+        {
+          "type": "trust_point",
+          "settings": {
+            "icon": "gift",
+            "heading": "Thoughtful",
+            "text": "& Personalized"
+          }
+        },
+        {
+          "type": "trust_point",
+          "settings": {
+            "icon": "leaf",
+            "heading": "A Kinder",
+            "text": "Tomorrow"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

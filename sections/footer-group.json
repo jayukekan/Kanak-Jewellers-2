@@ -1,0 +1,101 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "brand": {
+          "type": "brand_information",
+          "settings": {
+            "show_social": false
+          }
+        },
+        "shop_links": {
+          "type": "vlora_link_group",
+          "settings": {
+            "heading": "Shop",
+            "link_1_label": "Shop All",
+            "link_1_url": "shopify://collections/all",
+            "link_2_label": "Best Sellers",
+            "link_2_url": "shopify://products/12-months-of-tiny-prints-magazine",
+            "link_3_label": "New Arrivals",
+            "link_3_url": "shopify://products/baby-footprint-handprint-clay-kit-hanging-frame",
+            "link_4_label": "Contact Us",
+            "link_4_url": "shopify://policies/contact-information",
+            "link_5_label": "",
+            "link_5_url": ""
+          }
+        },
+        "about_links": {
+          "type": "vlora_link_group",
+          "settings": {
+            "heading": "Policy",
+            "link_1_label": "Privacy Policy",
+            "link_1_url": "shopify://policies/privacy-policy",
+            "link_2_label": "Shipping Policy",
+            "link_2_url": "shopify://pages/shipping-policy",
+            "link_3_label": "Terms & Conditions",
+            "link_3_url": "shopify://policies/terms-of-service",
+            "link_4_label": "Refund Policy",
+            "link_4_url": "shopify://policies/refund-policy",
+            "link_5_label": "",
+            "link_5_url": ""
+          }
+        },
+        "help_links": {
+          "type": "vlora_link_group",
+          "settings": {
+            "heading": "Help",
+            "link_1_label": "Cart",
+            "link_1_url": "https://vloraindia.com/cart",
+            "link_2_label": "Profile",
+            "link_2_url": "https://shopify.com/authentication/72871673930/login?_s=fdc45fe3-ce50-4534-810e-47159e00525c&_y=1cb80353-c4d4-4576-a79b-32e57ee98ff2&analytics_trace_id=7c3bcdb8-9ad8-4100-9605-9741f7717410&client_id=49296cab-b39b-4900-9b47-07f6381f5d01&locale=en-IN&redirect_uri=%2Fauthentication%2F72871673930%2Foauth%2Fauthorize%3F_s%3Dfdc45fe3-ce50-4534-810e-47159e00525c%26_y%3D1cb80353-c4d4-4576-a79b-32e57ee98ff2%26analytics_trace_id%3D7c3bcdb8-9ad8-4100-9605-9741f7717410%26buyer_flags%3DeyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cmFraXotMWEubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzkwMjcyMDAyLCJuYmYiOjE3ODk2NjcyMDJ9.2OU-nBy7pJx09I6RMW1YmzyLz_bbO3zAyOZOBGIPAxE%26client_id%3D49296cab-b39b-4900-9b47-07f6381f5d01%26locale%3Den-IN%26nonce%3D0da675fd-2419-497d-aa10-272be99b7016%26redirect_uri%3Dhttps%253A%252F%252Fshopify.com%252F72871673930%252Faccount%252Fcallback%26region_country%3DIN%26response_type%3Dcode%26scope%3Dopenid%2Bemail%2Bcustomer-account-api%253Afull%26state%3DhWNGwbCZJlY6sqAZCzkhe28Q&region_country=IN",
+            "link_3_label": "Orders",
+            "link_3_url": "https://shopify.com/72871673930/account/orders?locale=en&region_country=IN&buyer_flags=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ1cmFraXotMWEubXlzaG9waWZ5LmNvbSIsImZsYWdzIjpbXSwiZXhwIjoxNzkwMjcyMDg0LCJuYmYiOjE3ODk2NjcyODR9.R8k2YiuMPjAtjMUuWLy3tMS8eamwheg198HznssPqfE",
+            "link_4_label": "",
+            "link_4_url": "",
+            "link_5_label": "",
+            "link_5_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "brand",
+        "shop_links",
+        "about_links",
+        "help_links"
+      ],
+      "custom_css": [
+        ".love-button {display: none;}",
+        ".footer__content-bottom{padding-top: 0;}"
+      ],
+      "settings": {
+        "color_scheme": "scheme-1",
+        "newsletter_enable": true,
+        "newsletter_heading": "Join the Vlora Family",
+        "enable_follow_on_shop": true,
+        "show_social": true,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "payment_enable": true,
+        "show_policy": false,
+        "margin_top": 0,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

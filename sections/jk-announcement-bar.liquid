@@ -1,0 +1,544 @@
+{% comment %}
+  VLORA - Announcement Bar
+  Desktop: 3 trust points in one row
+  Mobile: single-item auto slider
+{% endcomment %}
+
+{% liquid
+  assign section_id = 'vlora-announcement-' | append: section.id
+%}
+
+<section
+  id="{{ section_id }}"
+  class="vlora-announcement"
+  aria-label="Store announcements"
+  style="
+    --ab-bg: {{ section.settings.background_color }};
+    --ab-text: {{ section.settings.text_color }};
+    --ab-separator: {{ section.settings.separator_color }};
+    --ab-icon: {{ section.settings.icon_color }};
+    --ab-desktop-height: {{ section.settings.desktop_height }}px;
+    --ab-mobile-height: {{ section.settings.mobile_height }}px;
+    --ab-desktop-font: {{ section.settings.desktop_font_size }}px;
+    --ab-mobile-font: {{ section.settings.mobile_font_size }}px;
+  "
+  data-autoplay="{{ section.settings.autoplay_mobile }}"
+  data-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
+>
+  <div class="vlora-announcement__inner page-width">
+    <div class="vlora-announcement__viewport">
+      <div class="vlora-announcement__track">
+        {% for block in section.blocks %}
+          <div
+            class="vlora-announcement__item"
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.link != blank %}
+              <a
+                href="{{ block.settings.link }}"
+                class="vlora-announcement__link"
+                {% if block.settings.open_new_tab %}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                {% endif %}
+              >
+            {% else %}
+              <div class="vlora-announcement__link">
+            {% endif %}
+
+              {% if block.settings.show_icon %}
+                <span class="vlora-announcement__icon" aria-hidden="true">
+                  {% case block.settings.icon %}
+                    {% when 'truck' %}
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M3 6h11v10H3V6Z" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M14 10h3.6l3.4 3.5V16h-7V10Z" stroke="currentColor" stroke-width="1.7"/>
+                        <circle cx="7" cy="18" r="1.8" stroke="currentColor" stroke-width="1.7"/>
+                        <circle cx="18" cy="18" r="1.8" stroke="currentColor" stroke-width="1.7"/>
+                      </svg>
+
+                    {% when 'lock' %}
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M12 14v3" stroke="currentColor" stroke-width="1.7"/>
+                      </svg>
+
+                    {% when 'whatsapp' %}
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M20.5 11.5a8.5 8.5 0 0 1-12.7 7.4L3 20l1.2-4.6A8.5 8.5 0 1 1 20.5 11.5Z" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M8.2 7.8c.2-.4.4-.4.7-.4h.4c.2 0 .4 0 .5.4l.8 2c.1.3.1.5-.1.7l-.6.7c-.2.2-.1.4 0 .6.6 1 1.4 1.8 2.4 2.4.2.1.4.2.6 0l.8-1c.2-.2.4-.3.7-.2l1.9.9c.3.1.4.3.4.5 0 .5-.2 1.4-.8 1.9-.5.5-1.3.8-2.2.8-1.2 0-3-.6-4.9-2.3-2.2-2-3.4-4.5-3.4-5.7 0-.8.3-1.6.8-2.1Z" fill="currentColor"/>
+                      </svg>
+
+                    {% when 'shield' %}
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M12 3 20 6v5c0 5-3.3 8.3-8 10-4.7-1.7-8-5-8-10V6l8-3Z" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.7"/>
+                      </svg>
+
+                    {% when 'gift' %}
+                      <svg viewBox="0 0 24 24" fill="none">
+                        <rect x="3" y="9" width="18" height="12" rx="1.5" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M12 9v12M3 13h18M12 9H8.5A2.5 2.5 0 1 1 11 6.5V9ZM12 9h3.5A2.5 2.5 0 1 0 13 6.5V9Z" stroke="currentColor" stroke-width="1.7"/>
+                      </svg>
+                  {% endcase %}
+                </span>
+              {% endif %}
+
+              <span class="vlora-announcement__content">
+                {% if block.settings.text != blank %}
+                  <span class="vlora-announcement__text">
+                    {{ block.settings.text }}
+                  </span>
+                {% endif %}
+
+                {% if block.settings.subtext != blank %}
+                  <span class="vlora-announcement__subtext">
+                    {{ block.settings.subtext }}
+                  </span>
+                {% endif %}
+              </span>
+
+            {% if block.settings.link != blank %}
+              </a>
+            {% else %}
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #{{ section_id }} {
+    background: var(--ab-bg);
+    color: var(--ab-text);
+    width: 100%;
+    position: relative;
+    z-index: 20;
+  }
+
+  #{{ section_id }} * {
+    box-sizing: border-box;
+  }
+
+  #{{ section_id }} .vlora-announcement__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  #{{ section_id }} .vlora-announcement__viewport {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  #{{ section_id }} .vlora-announcement__track {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  #{{ section_id }} .vlora-announcement__item {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 0;
+    height: var(--ab-desktop-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #{{ section_id }} .vlora-announcement__item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 45%;
+    background: var(--ab-separator);
+  }
+
+  #{{ section_id }} .vlora-announcement__link {
+    width: 100%;
+    height: 100%;
+    padding: 0 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    color: inherit;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  #{{ section_id }} a.vlora-announcement__link:hover {
+    opacity: .78;
+  }
+
+  #{{ section_id }} .vlora-announcement__icon {
+    width: 15px;
+    height: 15px;
+    flex: 0 0 15px;
+    display: inline-flex;
+    color: var(--ab-icon);
+  }
+
+  #{{ section_id }} .vlora-announcement__icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  #{{ section_id }} .vlora-announcement__content {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 0;
+    line-height: 1.1;
+  }
+
+  #{{ section_id }} .vlora-announcement__text {
+    font-size: var(--ab-desktop-font);
+    font-weight: 500;
+    white-space: nowrap;
+    letter-spacing: .01em;
+  }
+
+  #{{ section_id }} .vlora-announcement__subtext {
+    font-size: calc(var(--ab-desktop-font) - 1px);
+    opacity: .78;
+    white-space: nowrap;
+  }
+
+  @media screen and (max-width: 749px) {
+    #{{ section_id }} .vlora-announcement__inner {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    #{{ section_id }} .vlora-announcement__track {
+      align-items: stretch;
+      transition: transform .45s cubic-bezier(.22,.61,.36,1);
+      will-change: transform;
+    }
+
+    #{{ section_id }} .vlora-announcement__item {
+      flex: 0 0 100%;
+      width: 100%;
+      height: var(--ab-mobile-height);
+    }
+
+    #{{ section_id }} .vlora-announcement__item::after {
+      display: none !important;
+    }
+
+    #{{ section_id }} .vlora-announcement__link {
+      padding: 0 14px;
+      gap: 6px;
+    }
+
+    #{{ section_id }} .vlora-announcement__icon {
+      width: 14px;
+      height: 14px;
+      flex-basis: 14px;
+    }
+
+    #{{ section_id }} .vlora-announcement__text {
+      font-size: var(--ab-mobile-font);
+    }
+
+    #{{ section_id }} .vlora-announcement__subtext {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #{{ section_id }} .vlora-announcement__track {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  (() => {
+    const section = document.getElementById('{{ section_id }}');
+    if (!section || section.dataset.initialized === 'true') return;
+
+    section.dataset.initialized = 'true';
+
+    const track = section.querySelector('.vlora-announcement__track');
+    const items = section.querySelectorAll('.vlora-announcement__item');
+
+    if (!track || items.length <= 1) return;
+
+    const autoplay = section.dataset.autoplay === 'true';
+    const speed = parseInt(section.dataset.speed, 10) || 3500;
+    const mobileQuery = window.matchMedia('(max-width: 749px)');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    let currentIndex = 0;
+    let timer = null;
+
+    function showSlide(index) {
+      currentIndex = index % items.length;
+
+      if (mobileQuery.matches) {
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      } else {
+        track.style.transform = '';
+      }
+    }
+
+    function stopSlider() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function startSlider() {
+      stopSlider();
+
+      if (
+        mobileQuery.matches &&
+        autoplay &&
+        !reduceMotion.matches
+      ) {
+        timer = setInterval(() => {
+          showSlide(currentIndex + 1);
+        }, speed);
+      }
+    }
+
+    function handleResponsiveChange() {
+      currentIndex = 0;
+      showSlide(0);
+      startSlider();
+    }
+
+    mobileQuery.addEventListener?.('change', handleResponsiveChange);
+    reduceMotion.addEventListener?.('change', startSlider);
+
+    section.addEventListener('mouseenter', stopSlider);
+    section.addEventListener('mouseleave', startSlider);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopSlider();
+      } else {
+        startSlider();
+      }
+    });
+
+    handleResponsiveChange();
+
+    if (Shopify.designMode) {
+      document.addEventListener('shopify:section:unload', (event) => {
+        if (event.detail.sectionId === '{{ section.id }}') {
+          stopSlider();
+        }
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "jk Announcement Bar",
+  "tag": "section",
+  "class": "section-vlora-announcement",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Design"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#F5DDD7"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator",
+      "default": "#D7BEB8"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 28,
+      "max": 52,
+      "step": 2,
+      "unit": "px",
+      "label": "Desktop height",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 28,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile height",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "desktop_font_size",
+      "min": 9,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "label": "Desktop font size",
+      "default": 11
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "min": 9,
+      "max": 14,
+      "step": 1,
+      "unit": "px",
+      "label": "Mobile font size",
+      "default": 11
+    },
+    {
+      "type": "header",
+      "content": "Mobile slider"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay_mobile",
+      "label": "Auto rotate announcements",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "unit": "s",
+      "label": "Change message every",
+      "default": 4
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show icon",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "truck",
+          "options": [
+            {
+              "value": "truck",
+              "label": "Shipping truck"
+            },
+            {
+              "value": "lock",
+              "label": "Secure checkout"
+            },
+            {
+              "value": "whatsapp",
+              "label": "WhatsApp"
+            },
+            {
+              "value": "shield",
+              "label": "Trust / Shield"
+            },
+            {
+              "value": "gift",
+              "label": "Gift"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Main text",
+          "default": "Free Shipping"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Secondary text",
+          "default": "on orders above ₹999"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "open_new_tab",
+          "label": "Open link in new tab",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "jk Announcement Bar",
+      "blocks": [
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "truck",
+            "text": "Free Shipping",
+            "subtext": "on orders above ₹999"
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "lock",
+            "text": "100% Secure Checkout",
+            "subtext": ""
+          }
+        },
+        {
+          "type": "announcement",
+          "settings": {
+            "icon": "whatsapp",
+            "text": "WhatsApp Support Available",
+            "subtext": ""
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

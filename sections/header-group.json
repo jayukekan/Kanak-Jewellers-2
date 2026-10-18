@@ -1,0 +1,122 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0"
+      ],
+      "disabled": true,
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-1",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "jk_announcement_bar_4DemFc": {
+      "type": "jk-announcement-bar",
+      "blocks": {
+        "announcement_YTrmzj": {
+          "type": "announcement",
+          "settings": {
+            "show_icon": true,
+            "icon": "truck",
+            "text": "Partial COD Available",
+            "subtext": "",
+            "link": "",
+            "open_new_tab": false
+          }
+        },
+        "announcement_HV8U7R": {
+          "type": "announcement",
+          "settings": {
+            "show_icon": true,
+            "icon": "lock",
+            "text": "100% Secure Checkout",
+            "subtext": "",
+            "link": "",
+            "open_new_tab": false
+          }
+        },
+        "announcement_NRG4w3": {
+          "type": "announcement",
+          "settings": {
+            "show_icon": true,
+            "icon": "whatsapp",
+            "text": "WhatsApp Support Available",
+            "subtext": "",
+            "link": "",
+            "open_new_tab": false
+          }
+        }
+      },
+      "block_order": [
+        "announcement_YTrmzj",
+        "announcement_HV8U7R",
+        "announcement_NRG4w3"
+      ],
+      "name": "jk Announcement Bar",
+      "settings": {
+        "background_color": "#40241b",
+        "text_color": "#ffffff",
+        "icon_color": "#ffffff",
+        "separator_color": "#d7beb8",
+        "desktop_height": 34,
+        "mobile_height": 34,
+        "desktop_font_size": 15,
+        "mobile_font_size": 14,
+        "autoplay_mobile": true,
+        "autoplay_speed": 4
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "search_placeholder": "Search for keepsakes...",
+        "show_wishlist": false,
+        "wishlist_link": "",
+        "margin_bottom": 0,
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "jk_announcement_bar_4DemFc",
+    "header"
+  ]
+}

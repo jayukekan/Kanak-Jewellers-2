@@ -1,0 +1,382 @@
+{%- liquid
+  assign story_image = section.settings.image
+  if story_image == blank and product.featured_image != blank
+    assign story_image = product.featured_image
+  endif
+-%}
+
+{%- style -%}
+  #ProductStory-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round }}px;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.03fr) minmax(0, .97fr);
+    align-items: center;
+    gap: clamp(3rem, 6vw, 8rem);
+    padding: clamp(2rem, 3.4vw, 4.8rem);
+    border: .1rem solid rgba(var(--color-foreground), .1);
+    border-radius: 2.4rem;
+    background: rgb(var(--color-background));
+    box-shadow: 0 1.8rem 5rem rgba(var(--color-foreground), .06);
+    overflow: hidden;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__media {
+    position: relative;
+    min-height: 100%;
+    border-radius: 1.8rem;
+    background: rgba(var(--color-foreground), .04);
+    overflow: hidden;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__media:after {
+    content: '';
+    display: block;
+    padding-bottom: {{ section.settings.image_ratio }}%;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__image,
+  #ProductStory-{{ section.id }} .jk-product-story__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__image {
+    object-fit: cover;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__placeholder {
+    color: rgba(var(--color-foreground), .15);
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__eyebrow {
+    margin: 0 0 .8rem;
+    color: rgb(var(--color-button));
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__heading {
+    max-width: 58rem;
+    margin: 0;
+    font-size: clamp(3rem, 3.5vw, 4.6rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -.035em;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__text {
+    max-width: 58rem;
+    margin-top: 1.4rem;
+    color: rgba(var(--color-foreground), .7);
+    font-size: 1.45rem;
+    line-height: 1.65;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__text > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__benefits {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2.4rem;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__benefit {
+    display: grid;
+    grid-template-columns: 4.2rem minmax(0, 1fr);
+    gap: 1.2rem;
+    align-items: center;
+    padding: 1.25rem 1.4rem;
+    border: .1rem solid rgba(var(--color-foreground), .1);
+    border-radius: 1.3rem;
+    background: rgba(var(--color-foreground), .025);
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__icon {
+    display: grid;
+    width: 4.2rem;
+    height: 4.2rem;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(var(--color-button), .1);
+    color: rgb(var(--color-button));
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__icon svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__benefit-title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  #ProductStory-{{ section.id }} .jk-product-story__benefit-text {
+    margin: .25rem 0 0;
+    color: rgba(var(--color-foreground), .62);
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+
+  @media screen and (min-width: 750px) {
+    #ProductStory-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    {% if section.settings.image_position == 'right' %}
+      #ProductStory-{{ section.id }} .jk-product-story__media { order: 2; }
+      #ProductStory-{{ section.id }} .jk-product-story__content { order: 1; }
+    {% endif %}
+  }
+
+  @media screen and (max-width: 749px) {
+    #ProductStory-{{ section.id }} .jk-product-story__inner {
+      grid-template-columns: 1fr;
+      gap: 2.6rem;
+      padding: 1.2rem 1.2rem 2.4rem;
+      border-radius: 1.8rem;
+    }
+
+    #ProductStory-{{ section.id }} .jk-product-story__media {
+      border-radius: 1.3rem;
+    }
+
+    #ProductStory-{{ section.id }} .jk-product-story__content {
+      padding: 0 .6rem;
+    }
+
+    #ProductStory-{{ section.id }} .jk-product-story__heading {
+      font-size: 3rem;
+    }
+
+    #ProductStory-{{ section.id }} .jk-product-story__text {
+      font-size: 1.35rem;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ProductStory-{{ section.id }}" class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+    <div class="jk-product-story__inner">
+      <div class="jk-product-story__media">
+        {% if story_image != blank %}
+          {{
+            story_image
+            | image_url: width: 1400
+            | image_tag:
+              class: 'jk-product-story__image',
+              widths: '375, 550, 750, 900, 1100, 1400',
+              sizes: '(min-width: 990px) 46vw, 100vw',
+              loading: 'lazy',
+              alt: section.settings.heading
+          }}
+        {% else %}
+          {{ 'product-1' | placeholder_svg_tag: 'jk-product-story__placeholder' }}
+        {% endif %}
+      </div>
+
+      <div class="jk-product-story__content">
+        {% if section.settings.eyebrow != blank %}
+          <p class="jk-product-story__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="jk-product-story__heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="jk-product-story__text rte">{{ section.settings.text }}</div>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <div class="jk-product-story__benefits">
+            {% for block in section.blocks %}
+              <div class="jk-product-story__benefit" {{ block.shopify_attributes }}>
+                <span class="jk-product-story__icon" aria-hidden="true">
+                  {% case block.settings.icon %}
+                    {% when 'heart' %}
+                      <svg viewBox="0 0 24 24" fill="none"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {% when 'shield' %}
+                      <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" stroke="currentColor" stroke-width="1.7"/><path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    {% else %}
+                      <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M5.6 5.6 18.4 18.4M18.4 5.6 5.6 18.4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                  {% endcase %}
+                </span>
+                <div>
+                  {% if block.settings.title != blank %}
+                    <h3 class="jk-product-story__benefit-title">{{ block.settings.title | escape }}</h3>
+                  {% endif %}
+                  {% if block.settings.text != blank %}
+                    <p class="jk-product-story__benefit-text">{{ block.settings.text | escape }}</p>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "JK Product story",
+  "tag": "section",
+  "class": "section",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Uses the product featured image when left blank."
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Desktop image position",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "image_ratio",
+      "min": 70,
+      "max": 130,
+      "step": 5,
+      "unit": "%",
+      "label": "Image height ratio",
+      "default": 105
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Small heading",
+      "default": "Made for meaningful moments"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A keepsake your family will treasure forever"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Turn their tiniest details into a beautiful memory. Our easy-to-use kit helps you create a personal keepsake at home—without the mess or stress.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "heart",
+          "options": [
+            { "value": "heart", "label": "Heart" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "sparkle", "label": "Sparkle" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Made with love"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "A personal memory created by you."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "JK Product story",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "heart",
+            "title": "Made with love",
+            "text": "A personal memory created by you."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "shield",
+            "title": "Baby-safe materials",
+            "text": "Gentle, easy to use and thoughtfully selected."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Beautifully giftable",
+            "text": "A heartfelt gift for parents and growing families."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
