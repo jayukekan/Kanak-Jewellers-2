@@ -349,7 +349,6 @@
         "reel_unboxing": {
           "type": "reel",
           "settings": {
-            "video": "shopify://files/videos/cc41fc456ffc495c8e1d312d54925fad.mp4",
             "title": "Unboxing the Kit",
             "link": "shopify://products/12-months-of-tiny-prints-magazine"
           }
@@ -357,7 +356,6 @@
         "reel_print": {
           "type": "reel",
           "settings": {
-            "video": "shopify://files/videos/949edd194a214ac6b42d7b2d36a23128.mp4",
             "title": "Creating the Print",
             "link": "shopify://products/baby-hand-footprint-hanging-frame-white-edition"
           }
@@ -365,7 +363,6 @@
         "reel_result": {
           "type": "reel",
           "settings": {
-            "video": "shopify://files/videos/9c4cabab258d4c2785040bc3a2dcc092.mp4",
             "title": "The Final Result",
             "link": ""
           }
@@ -373,7 +370,6 @@
         "reel_reactions": {
           "type": "reel",
           "settings": {
-            "video": "shopify://files/videos/49daed0d9fa34853ad9f12bb09d47379.mp4",
             "title": "Parent Reactions",
             "link": ""
           }
@@ -381,7 +377,6 @@
         "reel_adm3ze": {
           "type": "reel",
           "settings": {
-            "video": "shopify://files/videos/IMG_8145.MP4",
             "title": "Creating the Print",
             "link": ""
           }
@@ -389,7 +384,6 @@
         "reel_CAyQzT": {
           "type": "reel",
           "settings": {
-            "video": "shopify://files/videos/IMG_8131.MP4",
             "title": "Creating the Print",
             "link": ""
           }
@@ -397,7 +391,6 @@
         "reel_wkByeE": {
           "type": "reel",
           "settings": {
-            "video": "shopify://files/videos/IMG_8146.MP4",
             "title": "Creating the Print",
             "link": ""
           }
@@ -405,7 +398,6 @@
         "reel_8RMt8E": {
           "type": "reel",
           "settings": {
-            "video": "shopify://files/videos/IMG_8132.MP4",
             "title": "Creating the Print",
             "link": ""
           }
