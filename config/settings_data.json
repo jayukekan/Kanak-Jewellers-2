@@ -151,30 +151,6 @@
         "type": "shopify://apps/sectionhub/blocks/app-embed/9b74df56-d9a0-4a6f-8248-1a8825110996",
         "disabled": false,
         "settings": {}
-      },
-      "10012068959737676665": {
-        "type": "shopify://apps/gropulse-wishlist/blocks/gropulse-wishlist/d606b448-832c-4b0a-adbb-21c7fa132df1",
-        "disabled": false,
-        "settings": {}
-      },
-      "14060646107696862457": {
-        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-        "disabled": false,
-        "settings": {}
-      },
-      "13059677947418467827": {
-        "type": "shopify://apps/penguincod/blocks/cod-checkout-popup/019af37d-e0e1-7221-8666-6edff9880ae8",
-        "disabled": false,
-        "settings": {
-          "enabled": true
-        }
-      },
-      "15191099883265461803": {
-        "type": "shopify://apps/reelfy-videos/blocks/app-embed/4022ffb0-05c3-4ef3-a409-6df51f4b1b3f",
-        "disabled": false,
-        "settings": {
-          "exclude_pages": ""
-        }
       }
     },
     "color_schemes": {
