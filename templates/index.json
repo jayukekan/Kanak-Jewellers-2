@@ -15,8 +15,6 @@
         "image_slide_ifLCjd": {
           "type": "image_slide",
           "settings": {
-            "image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_02_04_50_AM.png",
-            "mob_image": "shopify://shop_images/ChatGPT_Image_Sep_8_2026_02_08_35_AM.png",
             "heading": "",
             "subheading": "<p><br/><br/></p>",
             "button_label": "",
@@ -442,7 +440,6 @@
           "type": "step",
           "settings": {
             "title": "Prepare",
-            "image": "shopify://shop_images/ChatGPT_Image_Sep_15_2026_11_17_49_PM.png",
             "description": "<p>Open your kit and prepare the material.</p>",
             "link": ""
           }
@@ -451,7 +448,6 @@
           "type": "step",
           "settings": {
             "title": "Press",
-            "image": "shopify://shop_images/ChatGPT_Image_Sep_15_2026_11_42_12_PM.png",
             "description": "<p>Capture their tiny hand or footprint.</p>",
             "link": ""
           }
@@ -460,7 +456,6 @@
           "type": "step",
           "settings": {
             "title": "Create",
-            "image": "shopify://shop_images/ChatGPT_Image_Sep_15_2026_11_17_59_PM.png",
             "description": "<p>Add the finishing touches.</p>",
             "link": ""
           }
@@ -469,7 +464,6 @@
           "type": "step",
           "settings": {
             "title": "Forever",
-            "image": "shopify://shop_images/ChatGPT_Image_Sep_15_2026_11_18_10_PM.png",
             "description": "<p>Display your memory at home.</p>",
             "link": ""
           }
@@ -481,6 +475,7 @@
         "step_create",
         "step_forever"
       ],
+      "disabled": true,
       "name": "VLORA How it works",
       "settings": {
         "eyebrow": "How It Works",
@@ -499,6 +494,38 @@
         "padding_bottom": 48,
         "mobile_padding_top": 36,
         "mobile_padding_bottom": 36
+      }
+    },
+    "featured_collection_FfQArj": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".card__heading a {font-weight: 600;}",
+        ".quick-add__submit {background: #40241b !important; color: #fff !important; border-radius: 30px !important;}"
+      ],
+      "settings": {
+        "collection": "all",
+        "products_to_show": 25,
+        "title": "Little Keepsakes, Big Memories",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 40,
+        "padding_bottom": 36
       }
     },
     "jk_featured_story_gAgL9X": {
@@ -571,7 +598,6 @@
     },
     "jk_dual_phd93g": {
       "type": "jk-dual",
-      "disabled": true,
       "name": "jk dual editorial",
       "settings": {
         "full_width": true,
@@ -579,7 +605,6 @@
         "panel_gap": 0,
         "color_scheme": "",
         "left_product": "baby-hand-footprint-clay-kit-a-memory-to-keep-forever",
-        "left_image": "shopify://shop_images/ChatGPT_Image_Aug_27_2026_09_18_20_PM.webp",
         "heading_line_1": "Designed to Be Worn",
         "heading_line_2": "Every Day",
         "heading_size": "medium",
@@ -593,7 +618,6 @@
         "button_text_color": "#111111",
         "button_radius": 24,
         "right_product": "baby-footprint-handprint-clay-kit-individual",
-        "right_image": "shopify://shop_images/21bedf0e-bac7-4a2e-8547-ec2af102ba6f_800x800_crop_center_9853ec7c-11f6-4e8f-b54b-3d314e19914c.webp",
         "right_title": "",
         "right_link": "",
         "show_product_title": true,
@@ -602,6 +626,38 @@
         "right_text_color": "#ffffff",
         "padding_top": 32,
         "padding_bottom": 32
+      }
+    },
+    "featured_collection_FtH6XY": {
+      "type": "featured-collection",
+      "custom_css": [
+        ".card__heading a {font-weight: 600;}",
+        ".quick-add__submit {background: #40241b !important; color: #fff !important; border-radius: 30px !important;}"
+      ],
+      "settings": {
+        "collection": "all",
+        "products_to_show": 25,
+        "title": "Little Keepsakes, Big Memories",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "link",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 40,
+        "padding_bottom": 36
       }
     },
     "jk_testimonials_home": {
@@ -710,7 +766,9 @@
     "featured_collection",
     "jk_reels_gallery_home",
     "jk_how_it_works_home",
+    "featured_collection_FfQArj",
     "jk_featured_story_gAgL9X",
+    "featured_collection_FtH6XY",
     "jk_dual_phd93g",
     "jk_testimonials_home"
   ]
