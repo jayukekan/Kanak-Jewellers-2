@@ -15,6 +15,8 @@
         "image_slide_ifLCjd": {
           "type": "image_slide",
           "settings": {
+            "image": "shopify://shop_images/imgi_4_Untitled_Design_62__jpg.jpg",
+            "mob_image": "shopify://shop_images/imgi_5_Untitled_Design_63__jpg.jpg",
             "heading": "",
             "subheading": "<p><br/><br/></p>",
             "button_label": "",
@@ -46,8 +48,9 @@
         },
         "image_slide_fACBGd": {
           "type": "image_slide",
-          "disabled": true,
           "settings": {
+            "image": "shopify://shop_images/imgi_6_Untitled_Design_64__jpg.jpg",
+            "mob_image": "shopify://shop_images/imgi_7_Untitled_Design_65__jpg.jpg",
             "heading": "Image Slide",
             "subheading": "<p>This is sample content for the brand. Use it to describe your brand.</p>",
             "button_label": "Button label",
@@ -596,38 +599,6 @@
         "mobile_spacing_bottom": 12
       }
     },
-    "jk_dual_phd93g": {
-      "type": "jk-dual",
-      "name": "jk dual editorial",
-      "settings": {
-        "full_width": true,
-        "image_ratio": "square",
-        "panel_gap": 0,
-        "color_scheme": "",
-        "left_product": "baby-hand-footprint-clay-kit-a-memory-to-keep-forever",
-        "heading_line_1": "Designed to Be Worn",
-        "heading_line_2": "Every Day",
-        "heading_size": "medium",
-        "content_vertical": "middle",
-        "content_alignment": "center",
-        "left_overlay_opacity": 10,
-        "left_text_color": "#ffffff",
-        "button_label": "Discover New Arrivals",
-        "button_link": "",
-        "button_background": "#ffffff",
-        "button_text_color": "#111111",
-        "button_radius": 24,
-        "right_product": "baby-footprint-handprint-clay-kit-individual",
-        "right_title": "",
-        "right_link": "",
-        "show_product_title": true,
-        "show_product_price": true,
-        "custom_price": "",
-        "right_text_color": "#ffffff",
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
-    },
     "featured_collection_FtH6XY": {
       "type": "featured-collection",
       "custom_css": [
@@ -658,6 +629,38 @@
         "swipe_on_mobile": false,
         "padding_top": 40,
         "padding_bottom": 36
+      }
+    },
+    "jk_dual_phd93g": {
+      "type": "jk-dual",
+      "name": "jk dual editorial",
+      "settings": {
+        "full_width": true,
+        "image_ratio": "square",
+        "panel_gap": 0,
+        "color_scheme": "",
+        "left_product": "baby-hand-footprint-clay-kit-a-memory-to-keep-forever",
+        "heading_line_1": "Designed to Be Worn",
+        "heading_line_2": "Every Day",
+        "heading_size": "medium",
+        "content_vertical": "middle",
+        "content_alignment": "center",
+        "left_overlay_opacity": 10,
+        "left_text_color": "#ffffff",
+        "button_label": "Discover New Arrivals",
+        "button_link": "",
+        "button_background": "#ffffff",
+        "button_text_color": "#111111",
+        "button_radius": 24,
+        "right_product": "baby-footprint-handprint-clay-kit-individual",
+        "right_title": "",
+        "right_link": "",
+        "show_product_title": true,
+        "show_product_price": true,
+        "custom_price": "",
+        "right_text_color": "#ffffff",
+        "padding_top": 32,
+        "padding_bottom": 32
       }
     },
     "jk_testimonials_home": {
